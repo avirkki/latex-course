@@ -1,0 +1,8 @@
+\frametitle{Conclusions\dots}
+\begin{itemize}
+\item \LaTeX{} and plain \TeX{} spaghetti mixed with the text
+is a nightmare to maintain. \gray{Recall the experiences from HTML 3.2 before
+properly working CSS.}
+\item \LaTeX{} is a large software with a very long history (starting from
+1978). Knowing the basics suffices well.
+\end{itemize}

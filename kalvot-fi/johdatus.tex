@@ -1,0 +1,278 @@
+% Hienoiksi havaittuja tyylej‰:
+% rico,contemporain,darkblue,frames,blends,whitecross,corners,capsules
+%
+\documentclass[a4paper,slideColor,colorBG,pdf,corners]{prosper}
+\usepackage[latin1]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{url}
+
+
+% N‰m‰ asiat voivat muuttua:
+\newcommand{\plus}{\makebox[1.3em]{+}}
+\newcommand{\minus}{\makebox[1.3em]{-}}
+
+
+
+
+\begin{document}
+
+\title{Osa 1: Lyhyt johdatus}
+\author{}
+\Logo(10.5,-0.8){\includegraphics[width=8mm]{soihtu}}
+\maketitle
+
+
+\begin{slide}{\LaTeX{}--jakelupaketit}
+Yksi ja sama \LaTeX{} eri paketeissa:
+\begin{itemize}
+\item TeXLive (Linux, MacOS X, Windows)
+\item teTeX (Linux)
+\item MikTeX (Windows)
+\item \dots
+\end{itemize}
+Uskonsodat jakeluiden paremmuudesta lienev‰t turhia.
+\end{slide}
+
+
+\begin{slide}{Dokumentin rakenne}
+{\small
+\begin{verbatim}
+\documentclass[a4paper,10pt]{article} % tyyli
+\usepackage[latin1]{inputenc} % tai [ansinew]
+\usepackage[finnish]{babel}   % tavutus
+\usepackage{graphicx}         % kuvat
+
+\begin{document}
+\section{S‰hkˆinen julkaiseminen}
+S‰hkˆinen julkaiseminen on 
+ollut mahdollista jo pitk‰‰n, 
+\dots
+\end{document}
+\end{verbatim}
+}
+\end{slide}
+
+
+\begin{slide}{Dokumentin k‰‰ntˆ, Linux}
+{\small
+\begin{verbatim}
+$ latex juttu.tex; dvipdf juttu  # tai
+$ pdflatex juttu                           
+\end{verbatim}}\bigskip
+
+\includegraphics[width=1\textwidth]{emacslinux}
+\end{slide}
+
+
+\begin{slide}{Dokumentin k‰‰ntˆ, Windows}
+{\small Windowsissa osoitetaan hiirell‰}\bigskip
+
+\includegraphics[width=0.8\textwidth]{texniccenter}
+\end{slide}
+
+
+\begin{slide}{Matematiikkaa}
+Kaavat kirjoitetaan \$-merkkien v‰liin
+\begin{center}
+\verb|$\sqrt{x^3}$| $\mapsto \sqrt{x^3}$
+\end{center}
+tai erilliseen kentt‰‰n:
+\begin{verbatim}
+   \[  \sqrt{x^3}  \]
+\end{verbatim}
+tai
+\begin{verbatim}
+   \begin{equation}
+   \sqrt{x^3}
+   \end{equation}
+\end{verbatim}
+joista j‰lkimm‰inen tuottaa numeron \\
+kaavan sivuun.
+\end{slide}
+
+
+\begin{slide}{Matematiikkaa}
+Esimerkkej‰: \\
+{\small
+\begin{verbatim}
+\begin{equation}\label{eq:gammaf}
+  \Gamma (n) := 
+  \int_0^\infty x^{n-1}e^{-x} dx 
+\end{equation}
+Huomaa, ett‰ (\ref{eq:gammaf}) ei
+suppene arvolla $n=0$
+\end{verbatim}
+\begin{equation}
+  \Gamma (n) := 
+  \int_0^\infty x^{n-1} e^{-x} dx
+\end{equation}
+Huomaa, ett‰ (1) ei suppene 
+arvolla $n=0$.}
+\end{slide}
+
+
+\begin{slide}{Matematiikkaa\dots}
+{\small
+\begin{verbatim}
+\[ \neg A := X \setminus A \]
+\end{verbatim} 
+
+\[ \neg A := X \setminus A \]
+
+\begin{verbatim}
+\[ \zeta(s) := 
+   \sum_{k=1}^\infty \frac{1}{k^s} \]
+\end{verbatim}
+
+\[ \zeta(s) := \sum_{k=1}^\infty \frac{1}{k^s} \]
+}
+\end{slide}
+
+
+\begin{slide}{Matematiikkaa\dots}
+Komentojen nimet 
+\begin{verbatim}
+\frac{}{}
+\int
+\sum
+\dots
+\end{verbatim}
+pit‰‰ muistaa. Peruskomentoja on vain muutama ja
+ne ovat varsin loogisia. \verb|\int| = integraali, ei
+integer\dots
+\end{slide}
+
+
+\begin{slide}{Rakenteita}
+Rakenteill‰ m‰‰ritell‰‰n tekstin esitystapa.\medskip
+
+Esimerkkej‰: \\
+{\small
+\begin{verbatim}
+\begin{enumerate}
+\item ensinn‰kin,
+\item toisekseen\dots
+\end{enumerate}
+\end{verbatim}\bigskip
+
+\begin{enumerate}
+\item ensinn‰kin,
+\item toisekseen\dots
+\end{enumerate}
+}
+\end{slide}
+
+
+\begin{slide}{Rakenteita\dots}
+{\small
+\begin{verbatim}
+\begin{itemize}
+\item hansikkaat
+\item lapaset
+\end{itemize}
+\end{verbatim}\bigskip
+
+\begin{itemize}
+\item hansikkaat
+\item lapaset
+\end{itemize}
+}
+\end{slide}
+
+
+\begin{slide}{Rakenteita\dots}
+{\small
+\begin{verbatim}
+Opettajani osasi havainnollistaa:
+\begin{quote} 
+Me m‰‰ritell‰‰n determinantti niin kuin 
+virastossa, sillai ik‰v‰sti. Se vain
+paiskataan teid‰n eteen ja sanotaan ett‰ 
+opi tuo tai kuole\dots tai jotenkin n‰in.
+\end{quote}
+\end{verbatim}
+
+Opettajani osasi havainnollistaa:
+\begin{quote} 
+Me m‰‰ritell‰‰n determinantti 
+niin kuin virastossa, sillai ik‰v‰sti. 
+Se vain paiskataan teid‰n eteen ja 
+sanotaan ett‰  opi tuo tai kuole\dots 
+tai jotenkin n‰in.
+\end{quote}}
+\end{slide}
+
+
+\begin{slide}{Grafiikkaa}
+\LaTeX issa kaiken voidaan ajatella koostuvan sis‰kk‰isist‰
+laatikoista ja niit‰ yhdist‰vist‰ janoista.\medskip
+
+Esimerkkej‰: \\
+{\small
+\begin{minipage}{0.6\textwidth}
+\begin{verbatim}
+\begin{center}
+\fbox{
+\rotatebox{-30}{
+\fbox{
+\includegraphics[width=2cm]
+{soihtu}}}}
+\vspace*{1cm}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.39\textwidth}
+\begin{center}
+\fbox{
+\rotatebox{-30}{
+\fbox{
+\includegraphics[width=2cm]{soihtu}
+}}}
+\end{center}
+\end{minipage}
+}
+\end{slide}
+
+
+\begin{slide}{Grafiikkaa\dots}
+{\small
+\begin{minipage}{0.6\textwidth}
+\begin{verbatim}
+\reflectbox{
+\rotatebox{30}{
+\resizebox{!}{5mm}{kikka-3}
+}}
+
+\vspace*{1cm}
+\rule{3cm}{1ex}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.39\textwidth}
+\begin{center}
+\reflectbox{
+\rotatebox{30}{
+\resizebox{!}{5mm}{kikka-3}
+}}
+
+\vspace*{1cm}
+\rule{3cm}{1ex}
+\end{center}
+\end{minipage}
+}
+\end{slide}
+
+
+\begin{slide}{Johdannon yhteenveto}
+\begin{itemize}
+\item K‰sikirjoitus on raakateksti‰: se vie v‰h‰n tilaa ja on helppo 
+  l‰hett‰‰ muille.
+\item K‰sikirjoitus alkaa aina \verb|\documentclass..| -komennolla:
+  hˆpin‰t kannattaa aluksi kopioida jostain vanhasta tekstist‰.
+\item Teksti on sekamelska rakennem‰‰rittelyj‰ ja itse teksti‰
+  (hyv‰n kirjoittajan k‰sikirjoituskaan ei n‰yt‰ sekamelskalta!)
+\item Kaikki on helppoa ja kivaa.
+\end{itemize}
+\end{slide}
+
+\end{document}

@@ -1,0 +1,8 @@
+\frametitle{Observations}
+\begin{itemize}
+\item \verb|\shadowbox{}| is from the package
+\texttt{fancybox}. There are tons of similar useful and less useful packages
+available at the Comprehensive TeX Archive Network (CTAN).
+\item To define new high level logical commands, one of course needs to know
+something about the low level \LaTeX{} ``programming''.
+\end{itemize}

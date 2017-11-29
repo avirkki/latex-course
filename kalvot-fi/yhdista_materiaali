@@ -1,0 +1,38 @@
+#!/bin/bash
+
+echo "K‰‰nnet‰‰n kalvot..."
+for f in {aloitus,johdatus,rakenteet1,rakenteet2,grafiikka,tyokalut} 
+  do
+  latex $f.tex > /dev/null
+  latex $f.tex > /dev/null
+  dvipdf $f
+done
+
+echo "K‰‰nnet‰‰n muut osat..."
+./prosper-esimerkit > /dev/null
+./asiakirjaesimerkit > /dev/null
+
+
+echo "Yhdistet‰‰n materiaali..."
+pdftk aloitus.pdf johdatus.pdf rakenteet1.pdf rakenteet2.pdf \
+matematiikka.pdf grafiikka.pdf tyokalut.pdf prosper-esimerkit.pdf \
+cat output latex-05a.pdf
+
+echo "Muodostetaan tulostettava versio..."
+pdftops latex-05a.pdf
+mpage -o -8R latex-05a.ps > latex-05a-tulostettava.ps
+ps2pdf -sPAPERSIZE=a4 latex-05a-tulostettava.ps
+
+
+echo "Yhdistet‰‰n taas..."
+pdftk latex-05a-tulostettava.pdf \
+LiiteB.pdf kirje-esim.pdf otsikot-esim.pdf kansi-esim.pdf \
+tyyli-esim.pdf lc2005.pdf \
+cat output latex-05-tulostettava.pdf
+
+pdftk latex-05a.pdf \
+LiiteB.pdf kirje-esim.pdf otsikot-esim.pdf kansi-esim.pdf \
+tyyli-esim.pdf lc2005.pdf \
+cat output latex-05.pdf
+
+rm latex-05a.* latex-05a-tulostettava.ps

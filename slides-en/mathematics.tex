@@ -1,0 +1,849 @@
+% Beamer's default font size is 11 points. It is possible to set the
+% default font size to any of 8, 9, 10, 11, 12, 14, 17, 20
+\documentclass[13pt]{beamer}
+
+\usetheme{Warsaw}
+%\usecolortheme{dolphin}
+\usecolortheme{seahorse}
+%\useinnertheme{circles}
+\usefonttheme{professionalfonts}
+%\usefonttheme{structurebold}
+%\usefonttheme{default}
+
+\setbeamertemplate{navigation symbols}{}
+ 
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{fancybox}
+
+% These things can change:
+\newcommand{\baseurl}{http://cell.vtt.fi/latex}
+\urlstyle{sf}
+\newcommand{\plus}{\makebox[2em]{+}}
+\newcommand{\minus}{\makebox[2em]{-}}
+\newcommand{\gray}[1]{%
+\textcolor{gray}{#1}
+}
+
+% In beamer, defining new commands inside the slides fails.
+% Definitions here:
+
+\begin{document}
+
+\logo{\includegraphics[width=1.4cm]{img/vttplain}\quad}
+\title{\scalebox{1.5}{\textrm{\LaTeX}} Course 2011}
+\subtitle{Part 4: Typesetting mathematics}
+\author{Arho Virkki}
+\institute{\textsc{VTT Technical Research Centre of Finland}}
+\date{\scalebox{0.8}{\textcolor{gray}{}}}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Typesetting mathematics}
+Inlined equations are written inside \verb|$$| characters:\\
+E.g., \verb|$\sum_{k=1}^\infty a_k$| produces $\sum_{k=1}^\infty a_k$.\medskip
+
+Equations on their own line are put into a separate
+environment
+\verb|\begin{equation}..\end{equation}|\footnote{This produces a number.},
+\begin{equation}
+\sum_{k=1}^\infty a_k,
+\end{equation}
+or \verb|\[..\]|\footnote{This doesn't.},
+\[ \sum_{k=1}^\infty a_k. \] 
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Typesetting mathematics\dots}
+Observe the differences in style when writing the equations within the text, or
+separately (e.g. the limits of the sum were written differently)
+
+\bigskip
+The style can also be forced with the commands,
+\begin{itemize}
+\item \verb|\textstyle|
+\item \verb|\displaystyle|
+\end{itemize}
+if needed.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Typesetting mathematics\dots}
+In the math mode, letters (the variables or constants) are typeset with slanted
+typeface and extra spaces are ignored:
+\begin{verbatim}
+\begin{equation}
+I(x) := a_1^2       b_{1,2}   c     x    .
+\end{equation}
+\end{verbatim}
+\begin{equation}
+I(x) := a_1^2       b_{1,2}   c     x    .
+\end{equation}
+\begin{flushleft}
+If the equations are part ot the sentence,  commas should be written such that
+the formulas become a natural part of the sentence.
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Typesetting mathematics\dots}
+The characters 
+\begin{verbatim}
+# $ % & ~ _ ^ \ { }
+\end{verbatim}
+have a special meaning in \LaTeX{}. If they are needed in the equations, 
+one must write
+\begin{verbatim}
+\#   \$   \%   \&   \_   \{   \}
+\end{verbatim}
+For example,
+\begin{verbatim}
+\[ \mathcal{L}\{f\}(s) := 
+   \int_0^\infty f(t) e^{-st} dt \]
+\end{verbatim}
+\[ \mathcal{L}\{f\}(s) := 
+   \int_0^\infty f(t) e^{-st} dt \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Typesetting mathematics\dots}
+\begin{itemize}
+\item Because ordinary keyboards are lacking most of the mathematical symbols,
+there are quite a number of special commands -- in addition to the greek
+letters  $\alpha, \beta, \gamma, \delta, \epsilon, \zeta, \eta, \theta,
+\iota, \kappa, \lambda, \mu, \nu, \xi, o, \pi, \rho, \sigma,
+\tau, \upsilon, \phi, \chi, \psi$ and $\omega$\medskip
+\item The commands for mathematical typesetting are best learned by heart.
+Editors (including Eclipse) also help in remembering the commands.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Upper and lower indices}
+The upper and lower indices can be produced with \verb|^| and \verb|_|. \bigskip
+
+\begin{verbatim}
+\[ V^2_1 \ge V_{21} \]
+\end{verbatim}
+
+\[ V^2_1 \ge V_{21} \]
+If there are more than one index, they need to be grouped with curly braces.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Rational expressions}
+\begin{verbatim}
+\[ \frac{a}{b} \]
+\[ \sqrt{2} \approx 1.4142 \]
+\end{verbatim}\bigskip
+
+\[ \frac{a}{b} \]
+\[ \sqrt{2} \approx 1.4142 \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Rational expressions\dots}
+\begin{verbatim}
+\[ \left(
+   \frac{\sqrt[3]{z-1}}{2}
+   \right)^2 \]
+\end{verbatim}\bigskip
+\[ \left(\frac{\sqrt[3]{z-1}}{2}\right)^2 \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Rational expressions\dots}
+Revision:
+\begin{itemize}
+\item Fraction: \verb|\frac{numerator}{denominator}| 
+\item Root: \verb|\sqrt{}| ja \verb|\sqrt[n]{}| (!)
+\item The size of the parenthesis can be automatically adjusted with the command
+pair \verb|\left(| and \verb|\right)| 
+\begin{itemize}
+\item Also \verb|\left[, \left\{| and \verb+\left|+ work
+\item One can mix $|, (, [, \{$ and $.$
+\item The dot shows nothing. Example: $\displaystyle\left\{
+\frac{\frac{a}{b}}{C}\right.$
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Rational expressions\dots}
+Chain fractions (or continuous fractions):\bigskip
+
+\begin{verbatim}
+\[ a_0 + \cfrac{1}
+         {a_1 + \cfrac{1}
+                {a_2+\frac{1}{a_3}}} \]
+\end{verbatim}\bigskip
+\[ a_0 + \cfrac{1}
+         {a_1 + \cfrac{1}
+                {a_2+\frac{1}{a_3}}} \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Differential operators}
+\begin{verbatim}
+\[ \frac{dy}{dt} = f(y;\lambda) \]
+\[ \frac{\partial u}{\partial t} = \kappa^2 
+   \left( \frac{\partial^2 u}{\partial x^2}
+        + \frac{\partial^2 u}{\partial y^2}
+        + \frac{\partial^2 u}{\partial z^2} 
+      \right) \]
+\end{verbatim}
+\[ \frac{dy}{dt} = f(y;\lambda) \]
+\[ \frac{\partial u}{\partial t} = \kappa^2 
+   \left( \frac{\partial^2 u}{\partial x^2}
+        + \frac{\partial^2 u}{\partial y^2}
+        + \frac{\partial^2 u}{\partial z^2} 
+      \right) \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Limits, sums, integrals}
+\begin{verbatim}
+\[ \lim_{x \to 0} 
+   \frac{3x^2 +7x^3}{x^2 +5x^4} = 3.\] 
+\end{verbatim}
+\[ \lim_{x \to 0} 
+   \frac{3x^2 +7x^3}{x^2 +5x^4} = 3.\]\bigskip
+
+\begin{verbatim}
+\[ \sum_{k=1}^\infty \frac{1}{2^k} = 
+   \frac{\pi^2}{6} \]
+\end{verbatim}
+\[ \sum_{k=1}^\infty \frac{1}{2^k} = 
+   \frac{\pi^2}{6} \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Limits, sums, integrals\dots}
+\begin{verbatim}
+\[ \int_{-\infty}^\infty \sin(x)\ dx = \pi \]
+\end{verbatim}
+\[ \int_{-\infty}^\infty \sin(x)\ dx = \pi \]\bigskip
+\begin{verbatim}
+\[ \oint_{\partial C} h(z)\ dz = 0 \]
+\end{verbatim}
+\[ \oint_{\partial C} h(z)\ dz = 0 \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Limits, sums, integrals\dots}
+\begin{verbatim}
+\[ \int\limits_{-\infty}^\infty 
+   \sin(x)\ dx = \pi \]
+\end{verbatim}
+\[ \int\limits_{-\infty}^\infty 
+   \sin(x)\ dx = \pi \]\bigskip
+\begin{verbatim}
+\[ \oint\limits_{\partial C} h(z)\ dz = 0 \]
+\end{verbatim}
+\[ \oint\limits_{\partial C} h(z)\ dz = 0 \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Revision and some trivia}
+\begin{itemize}
+\item The upper and lower indices are obtained with \verb|^| ja \verb|_|
+\item Spaces in equations can be enforced with \verb|\ |\\
+(backslash and space)
+\item The command \verb|\limits| puts more emphasis on the upper and lower
+indices
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Spaces in equations}
+\begin{verbatim}
+\[ a\, b \]
+\[ a\: b \]
+\[ a\  b \]
+\[ a\! b \]
+\end{verbatim}
+\[ a\, b \]
+\[ a\: b \]
+\[ a\  b \]
+\[ a\! b \]
+\begin{itemize}
+\item The last command \verb|\!| is a negative space.
+\item Use these fine-tunings sparingly!
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Math fonts}
+Math mode is not for writing text. Nevertheless, there are some commands to
+change the appearance of the fonts.\medskip
+
+\begin{tabular}{ll}
+\verb|A| & $A$ \\
+\verb|\mathrm{A}| & $\mathrm{A}$ \\
+\verb|\mathbf{A}| & $\mathbf{A}$ \\
+\verb|\mathbb{A}| & $\mathbb{A}$  \\
+\verb|\mathcal{A}| & $\mathcal{A}$, \\
+\end{tabular}\medskip
+
+The last two commands only work for capital letters.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Font style, examples}
+\begin{verbatim}
+\[ \dot{M}_{\mathrm{CO_2}} \]
+\end{verbatim}
+\[ \dot{M}_{\mathrm{CO_2}} \]
+\begin{verbatim}
+\[ \alpha \in \mathbb{C}, \mathbf{v} \in X 
+     \Rightarrow \alpha \mathbf{v} \in X \]
+\end{verbatim}
+\[ \alpha \in \mathbb{C}, \mathbf{v} \in X 
+     \Rightarrow \alpha \mathbf{v} \in X \]
+\begin{itemize}
+\item Chemical formulas are written with capital letter.
+\item (In modern literature, vectors are typically written just as $v \in X$,
+without any additional decorations.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Font size}
+The size of the font is also controlled differently:\bigskip
+
+\begin{tabular}{ll}
+\verb|{\scriptscriptstyle \sum}| & ${\scriptscriptstyle \sum}$ \\
+\verb|{\scriptstyle \sum}| & ${\scriptstyle \sum}$ \\
+\verb|{\textstyle \sum}| & ${\textstyle \sum}$  \\
+\verb|{\displaystyle \sum}| & ${\displaystyle \sum}$ \\
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Function names}
+\LaTeX knows the most conventional function names:\bigskip
+\begin{verbatim}
+\[ \cos (\pi) = -1 \]
+\end{verbatim}
+\[ \cos (\pi) = -1 \]\bigskip
+
+\begin{verbatim}
+\[ \sin (0) = 0 \]
+\end{verbatim}
+\[ \sin (0) = 0 \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Function names\dots}
+Known names include
+\begin{verbatim}
+\arccos \cos  \csc    \exp  \ker    \limsup 
+\min    \sinh \arcsin \cosh \def    \gcd  
+\lg     \ln   \Pr     \sup  \arctan \cot 
+\det    \hom  \lim    \log  \sec    \tan
+\arg    \coth \dim    \inf  \liminf \max    
+\sin    \tanh
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Function names\dots}
+Own functions can be \textbf{declared} as operators with the command
+\verb|\operatorname|.\bigskip
+\begin{verbatim}
+\[ \operatorname{arg min}_
+   \Theta f(\Theta) \]
+\end{verbatim}
+\[ \operatorname{arg min}_\Theta f(\Theta) \]
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Function names\dots}
+The previous example still needs some tuning:
+\begin{verbatim}
+\[ \operatorname{arg\ min}_
+   \Theta f(\Theta) \]
+\end{verbatim}
+\[ \operatorname{arg\ min}_\Theta f(\Theta) \]
+\begin{verbatim}
+\[ \underset{\Theta}
+   {\operatorname{arg\ min}} f(\Theta) \]
+\end{verbatim}
+\[ \underset{\Theta}{\operatorname{arg\ min}} f(\Theta) \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Mixing text and formulas}
+LaTeX :
+\begin{verbatim}
+\[ S := \{ x\in \Omega | f(x) = c 
+           \ \mathrm{and}\ g(x) < 0 \} \]
+\end{verbatim}\bigskip
+\[ S := \{ x\in \Omega | f(x) = c, \ \mathrm{and}\ g(x) < 0 \} \]
+AMS-LaTeX:
+\begin{verbatim}
+\[ S := \{ x\in \Omega | f(x) = c
+           \text{ and } g(x) < 0 \} \]
+\end{verbatim}\bigskip
+\[ S := \{ x\in \Omega | f(x) = c, \text{ and } g(x) < 0 \} \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Three dots(\dots)}
+Three dots:\bigskip
+\begin{verbatim}
+\[ a_0 + a_2 + \cdots + a_n \]
+\[ \ldots, \cdots, \ddots, \vdots \]
+\end{verbatim} \bigskip
+\[ a_0 + a_2 + \cdots + a_n \]
+\[ \ldots, \cdots, \ddots, \vdots \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Mathematical accents}
+\begin{tabular}{llll}
+\verb|\underline{a}| & $\underline{a}$ &
+\verb|\overline{a}| & $\overline{a}$ \\
+\verb|\hat{a}| & $\hat{a}$ &
+\verb|\check{a}| & $\check{a}$ \\
+\verb|\tilde{a}| & $\tilde{a}$ &
+\verb|\acute{a}| & $\acute{a}$ \\
+\verb|\grave{a}| & $\grave{a}$ &
+\verb|\dot{a}| & $\dot{a}$ \\
+\verb|\ddot{a}| & $\ddot{a}$ &
+\verb|\breve{a}| & $\breve{a}$ \\
+\verb|\bar{a}| & $\bar{a}$ &
+\verb|\vec{a}| & $\vec{a}$ 
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Norm and absolute value}
+Norm:\bigskip
+\begin{verbatim}
+\[ \|a x\| = |a| \|x\| \]
+\end{verbatim} \bigskip
+\[ \|a x\| = |a| \|x\| \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Parentheses}
+Dot produces an invisible parenthesis:\bigskip
+\begin{verbatim}
+\[ \left( \frac{1+z}{1-z} \right. \]
+\[ \left. \frac{du}{dx} \right|_{x=0} \]
+\end{verbatim}\bigskip
+\[ \left( \frac{1+z}{1-z} \right. \]
+\[ \left. \frac{du}{dx} \right|_{x=0} \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Multiline equations}
+\begin{verbatim}
+\begin{eqnarray}
+F(x) &= & \int_a^b I(u,x) du  \nonumber \\
+     &= & \frac{1}{\sqrt{\pi}}G(x)
+\end{eqnarray}
+\end{verbatim}\bigskip
+\begin{eqnarray}
+F(x) &= & \int_a^b I(u,x) du  \nonumber \\
+     &= & \frac{1}{\sqrt{\pi}}G(x)
+\end{eqnarray}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Multiline equations\dots}
+\begin{itemize}
+\item \verb|eqnarray| works like a table, but it has three columns fixed.
+\item The numbering can be suppressed with \verb|\nonumber|
+\item If the numbering is not needed at all, one can use the form
+\verb|\begin{eqnarray*}| \dots \verb|\end{eqnarray*}|
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Matrices}
+Like the table,\bigskip
+\begin{verbatim}
+\[ \left[\begin{array}{ccc}
+    1 & 0 & 2  \\
+    0 & 2 & 0  \\
+    0 & 0 & a \end{array}\right] \]
+\end{verbatim}
+
+\[ \left[\begin{array}{ccc}
+    1 & 0 & 2  \\
+    0 & 2 & 0  \\
+    0 & 0 & a \end{array}\right] \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Matrices\dots}
+Using the AMS-package:\bigskip
+\begin{verbatim}
+\[ \begin{bmatrix}
+  1 & 0 & 2  \\
+  0 & 2 & 0  \\
+  0 & 0 & a \end{bmatrix} \]
+\end{verbatim}
+\[ \begin{bmatrix}
+  1 & 0 & 2  \\
+  0 & 2 & 0  \\
+  0 & 0 & a \end{bmatrix} \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Matrices\dots}
+\dots or \dots \bigskip
+\begin{verbatim}
+\[ \begin{pmatrix}
+  1 & 0 & 2  \\
+  0 & 2 & 0  \\
+  0 & 0 & a \end{pmatrix} \]
+\end{verbatim}
+\[ \begin{pmatrix}
+  1 & 0 & 2  \\
+  0 & 2 & 0  \\
+  0 & 0 & a \end{pmatrix} \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Functions defined in parts}
+Like with tables,\bigskip
+\begin{verbatim}
+\[ |x| = \left\{ \begin{array}{rl}
+    x & \mbox{if $x \geq 0$};\\
+   -x & \mbox{if $x < 0$}.\end{array}
+   \right. \] 
+\end{verbatim}
+\[ |x| = \left\{ \begin{array}{rl}
+         x & \mbox{if $x \geq 0$};\\
+        -x & \mbox{if $x < 0$}.\end{array} \right. \] 
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Functions defined in parts\dots}
+Or using the AMS-package:\bigskip
+\begin{verbatim}
+\[ |x| = \left\{ \begin{aligned}
+    x & \text{ if } x \geq 0;\\
+   -x & \text{ if } x < 0.\end{aligned}
+   \right. \] 
+\end{verbatim}
+\[ |x| = \left\{ \begin{aligned}
+    x & \text{ if } x \geq 0;\\
+   -x & \text{ if } x < 0.\end{aligned}
+   \right. \] 
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Grouping with curly braces}
+Equations can be annotated to help the reader:\bigskip
+\begin{verbatim}
+\[ \underbrace{A}_{\star} \]
+\end{verbatim}
+\[ \underbrace{A}_{\star} \]\bigskip
+\begin{verbatim}
+\[ \overbrace{B}^{\dag} \]
+\end{verbatim}
+\[ \overbrace{B}^{\dag} \]
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Grouping with curly braces\dots}
+Example:\bigskip
+\begin{verbatim}
+\[ y' = \overbrace{
+   \underbrace{Ay}_{\text{linear part}} + 
+   \underbrace{By^R}_{\text{nonlinear part}}
+   }^{\text{the driving force}} \]
+\end{verbatim}
+\[ y' = \overbrace{
+        \underbrace{Ay}_{\text{linear part}} + 
+        \underbrace{By^R}_{\text{nonlinear part}}
+      }^{\text{the driving force}} \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Boxes}
+Adding a box around an equation\bigskip
+\begin{verbatim}
+\[ \boxed{\frac{1}{1+x}} \]
+\end{verbatim}
+\[ \boxed{\frac{1}{1+x}} \]\bigskip
+
+\begin{itemize}
+\item may simplify the presentation
+\item \dots or make it even more complicated
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Boxes\dots}
+Example:\bigskip
+\begin{verbatim}
+\begin{eqnarray*}  
+\| x - z \| &= &\| x\ \boxed{-y+y} - z \|\\
+         &\leq &\| x - y \| + \| y - z \| 
+\end{eqnarray*}
+\end{verbatim}
+\begin{eqnarray*}  
+\| x - z \| &=    &\| x\ \boxed{-y+y} - z \| \\
+            &\leq &\| x - y \| + \| y - z \| 
+\end{eqnarray*}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{The AMS package}
+In this course, we use the commands from the AMS package without separate
+notification (as they have become standard over the years). The following
+commands are especially from the AMS package \texttt{amsmath}:\bigskip
+
+\begin{tabular}{ll}
+\verb|\iint| & $\iint$ \\
+\verb|\iiint| & $\iiint$ \\
+\verb|\iiiint| & $\iiiint$ \\
+\verb|\idotsint| & $\idotsint$ \\
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{The AMS package\dots}
+\begin{verbatim}
+\[ \sum_{\substack{k=1\dots n\\ 
+                   l=1\dots m\\
+                   k\neq l}} 
+    a_{k,l} \]
+\end{verbatim}
+\[ \sum_{\substack{k=1\dots n\\ 
+                   l=1\dots m\\
+                   k\neq l}} 
+    a_{k,l} \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{The AMS package\dots}
+\begin{verbatim}
+\[ \overset{*}{A}, \underset{*}{B} \]
+\end{verbatim}
+\[ \overset{*}{A}, \underset{*}{B} \]\bigskip
+\begin{verbatim}
+\[ \sideset{_a^b}{_c^d}\prod \]
+\end{verbatim}
+\[ \sideset{_a^b}{_c^d}\prod \]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Greek letters}
+\begin{tabular}{llllll}
+\verb|\alpha| & $\alpha$ &
+\verb|\beta| & $\beta$ &
+\verb|\gamma| & $\gamma$ \\
+\verb|\delta| & $\delta$  &
+\verb|\epsilon| & $\epsilon$ &
+\verb|\varepsilon| & $\varepsilon$\\
+\verb|\zeta| & $\zeta$ &
+\verb|\eta| & $\eta$ &
+\verb|\theta| & $\theta$ \\
+\verb|\vartheta| & $\vartheta$ &
+\verb|\iota| & $\iota$ & 
+\verb|\kappa| & $\kappa$ \\
+\verb|\lambda| & $\lambda$ &
+\verb|\mu| & $\mu$ &
+\verb|\nu| & $\nu$ \\
+\verb|\xi| & $\xi$ &
+\verb|\pi| & $\pi$ &
+\verb|\varpi| & $\varpi$\\
+\verb|\rho| & $\rho$ &
+\verb|\varrho| & $\varrho$ &
+\verb|\sigma| & $\sigma$ \\
+\verb|\varsigma| & $\varsigma$ &
+\verb|\tau| & $\tau$ &
+\verb|\upsilon| & $\upsilon$ \\
+\verb|\phi| & $\phi$ &
+\verb|\varphi| & $\varphi$ &
+\verb|\chi| & $\chi$ \\
+\verb|\psi| & $\psi$ &
+\verb|\omega| & $\omega$ 
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Greek capital letters}
+Only those letters are having a separate command, which do not have a
+key in the ordinary keyboard.\bigskip
+
+\begin{tabular}{llllll}
+\verb|\Gamma| & $\Gamma$ &
+\verb|\Delta| & $\Delta$ &
+\verb|\Theta| & $\Theta$ \\
+\verb|\Lambda| & $\Lambda$ &
+\verb|\Xi| & $\Xi$ &
+\verb|\Pi| & $\Pi$ \\
+\verb|\Sigma| & $\Sigma$ &
+\verb|\Upsilon| & $\Upsilon$ &
+\verb|\Phi| & $\Phi$ \\
+\verb|\Psi| & $\Psi$ &
+\verb|\Omega| & $\Omega$
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Symbols: relations}
+\begin{tabular}{llllll}
+\verb|\approx| & $\approx$ &
+\verb|\asymp| & $\asymp$ &
+\verb|\bowtie| & $\bowtie$ \\
+\verb|\cong| & $\cong$ &
+\verb|\dashv| & $\dashv$ &
+\verb|\doteq| & $\doteq$ \\
+\verb|\equiv| & $\equiv$ &
+\verb|\frown| & $\frown$ &
+\verb|\ge| or \verb|\geq| & $\geq$ \\
+\verb|\gg| & $\gg$ &
+\verb|\in| & $\in$ &
+\verb|\le| or \verb|\leq| & $\leq$ \\
+\verb|\ll| & $\ll$ &
+\verb|\mid| or \verb"|" & $\mid$ &
+\verb|\models| & $\models$ \\ 
+\verb|\neq| & $\neq$ &
+\verb|\ni| & $\ni$ &
+\verb|\notin| & $\notin$
+\end{tabular}
+\end{frame}
+\begin{frame}[fragile]\frametitle{Symbols: relations\dots}
+\begin{tabular}{llllll}
+\verb|\parallel| & $\parallel$ &
+\verb|\prec|& $\prec$ &
+\verb|\preceq|& $\preceq$ \\
+\verb|\perp| & $\perp$ &
+\verb|\propto| & $\propto$ &
+\verb|\sim| & $\sim$ \\
+\verb|\simeq| & $\simeq$ &
+\verb|\smile| & $\smile$ &
+\verb|\sqsubseteq| & $\sqsubseteq$ \\
+\verb|\sqsupseteq| & $\sqsupseteq$ &
+\verb|\subset| & $\subset$ &
+\verb|\subseteq| & $\subseteq$ \\
+\verb|\succ| & $\succ$ &
+\verb|\succeq| & $\succeq$ &
+\verb|\supset| & $\supset$ \\
+\verb|\supseteq| & $\supseteq$ &
+\verb|\vdash| & $\vdash$ &
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Symbols: binary operators}
+\begin{tabular}{llll}
+\verb|\amalg| & $\amalg$ &
+\verb|\ast| & $\ast$ \\
+\verb|\bullet| & $\bullet$ &
+\verb|\bigcirc| & $\bigcirc$ \\
+\verb|\bigtriangledown| & $\bigtriangledown$ &
+\verb|\bigtriangleup| & $\bigtriangleup$ \\
+\verb|\cap| & $\cap$ &
+\verb|\cdot| & $\cdot$ \\
+\verb|\circ| & $\circ$ &
+\verb|\cup| & $\cup$  \\
+\verb|\dagger| & $\dagger$ &
+\verb|\ddagger| & $\ddagger$ \\
+\verb|\diamond| & $\diamond$ &
+\verb|\div| & $\div$ \\
+\verb|\mp| & $\mp$ &
+\verb|\odot| & $\odot$ 
+\end{tabular}
+\end{frame}
+\begin{frame}[fragile]\frametitle{Symbols: binary operators\dots}
+\begin{tabular}{llll}
+\verb|\ominus| & $\ominus$ &
+\verb|\oplus| & $\oplus$ \\
+\verb|\oslash| & $\oslash$ &
+\verb|\otimes| & $\otimes$ \\
+\verb|\pm| & $\pm$ &
+\verb|\setminus| & $\setminus$ \\
+\verb|\sqcap| & $\sqcap$ &
+\verb|\sqcup| & $\sqcup$ \\
+\verb|\star| & $\star$ &
+\verb|\times| & $\times$ \\
+\verb|\triangleleft| & $\triangleleft$ &
+\verb|\triangleright| & $\triangleright$ \\
+\verb|\uplus| & $\uplus$ &
+\verb|\vee| & $\vee$ \\
+\verb|\wedge| & $\wedge$ &
+\verb|\wr| & $\wr$
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Symbols: arrows}
+\begin{tabular}{llll}
+\verb|\downarrow| & $\downarrow$ \\
+\verb|\Downarrow| & $\Downarrow$ \\
+\verb|\hookleftarrow| & $\hookleftarrow$ \\
+\verb|\hookrightarrow| & $\hookrightarrow$ \\
+\verb|\leftarrow| or \verb|\gets| & $\leftarrow$ \\
+\verb|\Leftarrow| & $\Leftarrow$ \\
+\verb|\leftharpoondown| & $\leftharpoondown$ \\
+\verb|\leftharpoonup| & $\leftharpoonup$ \\
+\verb|\leftrightarrow| & $\leftrightarrow$ \\
+\verb|\Leftrightarrow| & $\Leftrightarrow$ 
+\end{tabular}
+\end{frame}
+\begin{frame}[fragile]\frametitle{Symbols: arrows\dots}
+\begin{tabular}{llll}
+\verb|\longleftarrow| & $\longleftarrow$ \\
+\verb|\Longleftarrow| & $\Longleftarrow$ \\
+\verb|\longleftrightarrow| & $\longleftrightarrow$ \\
+\verb|\Longleftrightarrow| & $\Longleftrightarrow$ \\
+\verb|\longmapsto| & $\longmapsto$ \\
+\verb|\longrightarrow| & $\longrightarrow$ \\
+\verb|\Longrightarrow| & $\Longrightarrow$ \\
+\verb|\mapsto| & $\mapsto$ \\
+\verb|\nearrow| & $\nearrow$ \\
+\verb|\nwarrow| & $\nwarrow$ \\
+\end{tabular}
+\end{frame}
+\begin{frame}[fragile]\frametitle{Symbols: arrows\dots}
+\begin{tabular}{llll}
+\verb|\rightarrow| or \verb|\to| & $\to$ \\
+\verb|\Rightarrow| & $\Rightarrow$ \\
+\verb|\rightharpoondown| & $\rightharpoondown$ \\
+\verb|\rightharpoonup| & $\rightharpoonup$ \\
+\verb|\rightleftharpoons| & $\rightleftharpoons$ \\
+\verb|\searrow| & $\searrow$ \\
+\verb|\swarrow| & $\swarrow$ \\
+\verb|\uparrow| & $\uparrow$ \\
+\verb|\Uparrow| & $\Uparrow$ \\
+\verb|\updownarrow| & $\updownarrow$ \\
+\verb|\Updownarrow| & $\Updownarrow$ \\
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Symbols: big symbols}
+\begin{tabular}{llllll}
+\verb|\sum| & $\sum$ &
+\verb|\int| & $\int$ &
+\verb|\oint| & $\oint$ \\[5pt]
+\verb|\prod| & $\prod$ &
+\verb|\coprod| & $\coprod$ &
+\verb|\bigcap| & $\bigcap$ \\[5pt]
+\verb|\bigcup| & $\bigcup$ &
+\verb|\bigsqcup| & $\bigsqcup$ &
+\verb|\bigvee| & $\bigvee$ \\[5pt]
+\verb|\bigwedge| & $\bigwedge$ &
+\verb|\bigodot| & $\bigodot$ &
+\verb|\bigotimes| & $\bigotimes$ \\[5pt]
+\verb|\bigoplus| & $\bigoplus$ &
+\verb|\biguplus| & $\biguplus$
+\end{tabular}
+\end{frame}
+
+
+\end{document}

@@ -1,0 +1,325 @@
+% Hienoiksi havaittuja tyylejä:
+% rico,contemporain,darkblue,frames,blends,whitecross,corners,capsules
+%
+\documentclass[a4paper,slideColor,colorBG,pdf,corners]{prosper}
+\usepackage[latin1]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{url}
+\usepackage{fancybox}
+
+% Nämä asiat voivat muuttua:
+\newcommand{\plus}{\makebox[1.3em]{+}}
+\newcommand{\minus}{\makebox[1.3em]{-}}
+
+
+
+\begin{document}
+
+\title{Osa 3: \LaTeX in typografiset komennot}
+\author{}
+\Logo(10.5,-0.8){\includegraphics[width=8mm]{soihtu}}
+\maketitle
+
+
+\begin{slide}{Typographical markup}
+Ideana on kuvata rakenteet millintarkasti:
+\begin{itemize}
+\item laatikot
+\item viivat
+\item välimatkat
+\item \dots
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Käytännössä}
+Tutkitaan joitain yleisimpiä komentoja.
+
+\begin{itemize}
+\item \verb|\rule[voffset]{width}{height}| \\ 
+  esimerkiksi  \verb|Foo\rule[-5pt]{2cm}{1ex}|: \\
+  Foo\rule[-5pt]{2cm}{1ex}.
+\item \verb|\framebox[width][pos]{text}| \\
+  esimerkiksi \verb|\framebox[9cm][s]{a b c}|:\\
+  \framebox[9cm][s]{a b c}\\
+  missä s=stretch (tai sitten l=left, r=right).
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Käytännössä\dots}
+\begin{itemize}
+\item \verb|\makebox[width][pos]{text}| \\
+  sama kuin \verb|framebox|, mutta ilman reunoja
+\item \verb|\fbox{text}|\\
+  lyhyt muoto, ei argumentteja: \verb|\fbox{tarkasta tämä!}| \\
+  \fbox{tarkasta tämä!}
+\item \verb|\mbox{text}|\\
+  aluksi turhan oloinen \verb|\mbox{entä nyt?}| \\ $\mapsto$
+  \mbox{entä nyt?} muuttaa sisältönsä jakamattomaksi yksiköksi.
+  Tätä tarvitsemme vielä, ja monesti.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Käytännössä\dots}
+\begin{itemize}
+\item \verb|\vspace*{height} ja \hspace*{width}| \\
+  \verb|\hspace*{3cm}|\hspace*{3cm} siirtää meidät 3cm oikealle (tai
+  alas, jos vspace). Negatiiviset arvot siirävät vasemmalle (tai
+  ylös). Tähtimuoto on käsky, ilman tähteä kyseessä on kehoitus.
+\item \verb|\parbox[pos][height][ipos]{width}{text}| \\
+  on laatikko, jonne voimme kerätä kamaa. Esimerkiksi
+  \verb|\fbox{\parbox[t][1cm][c]{4cm}{loo-\\ta}}|
+  \fbox{\parbox[t][1cm][c]{4cm}{loo-\\ta}}
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Käytännössä\dots}
+\begin{itemize}
+\item \verb|pos| voi olla t=top line tai b=bottom line
+\item \verb|ipos| voi olla t=top, b=bottom, c=centered ja
+  s=stretched
+\item \verb|parbox| käyttäytyy miltei kuten sivu, ja sitä voi käsitellä
+  yhtenä elementtinä.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Käytännössä\dots}
+\begin{verbatim}
+  \fbox{\parbox[t][3cm][t]{6cm}{%
+      \includegraphics[width=1cm]
+      {soihtu} \dotfill {\Huge A} \\
+      \hspace*{1cm}\rotatebox{45}{%
+        $\scriptstyle\begin{pmatrix} 
+          a & b \\ c & d \end{pmatrix}$}}
+  }
+\end{verbatim}
+\begin{center}
+  \fbox{\parbox[t][3cm][t]{6cm}{%
+      \includegraphics[width=1cm]
+      {soihtu} \dotfill {\Huge A} \\
+      \hspace*{1cm}\rotatebox{45}{%
+        $\scriptstyle\begin{pmatrix} 
+          a & b \\ c & d \end{pmatrix}$}}
+  }
+\end{center}
+\end{slide}
+
+
+\begin{slide}{Käytännössä\dots}
+Mitä äskeisessä tapahtui?
+\begin{itemize}
+\item \verb|\fbox| teki laatikkomme näkyväksi,
+\item \verb|\includegraphics| latasi kuvan,
+\item \verb|\dotfill| täytti tyhjän tilan pisteillä ja
+\item \verb|\hspace*| siirsi <<kynää<< vaakasuunnassa.
+\end{itemize}
+Otetaan sama uudelleen ja laatikoidaan \textbf{kaikki}
+elementit.
+\end{slide}
+
+\begin{slide}{Käytännössä\dots}
+Nyt nähdään, mitä todella tapahtuu
+\begin{center}
+  \fbox{\parbox[t][3cm][t]{6cm}{%
+      \fbox{\includegraphics[width=1cm]
+        {soihtu}} \dotfill {\Huge \fbox{A}} \\
+      \hspace*{1cm}\rotatebox{45}{\fbox{%
+          $\scriptstyle\begin{pmatrix} 
+            a & b \\ c & d \end{pmatrix}$}}
+    }}
+\end{center}\bigskip
+paitsi että reunukset vievät tilaa, jolloin $2\times 2$ matriisimme ei
+mahdu enää laatikkoon.
+\end{slide}
+
+
+\begin{slide}{Johtopäätökset}
+Lisäksi näimme, että \LaTeX -koodi menee mutkikkaan näköiseksi, jos 
+rakennamme monimutkaisia elementtejä $\to$ juuri tässä on \LaTeX in idea:
+Tekstin looginen rakenne ja muotoilunäpertelyt pidetään erillään
+ja \textbf{eri} tiedostoissa. 
+
+\begin{itemize}
+\item Kaikkea voi säätää ja
+\item kukaan ei halua säätää kaikkea,
+\end{itemize}
+\begin{flushleft}
+mutta kokemuksesta tiedetään, että kaikki haluavat säätää kirjasintyyliä. 
+Tutkitaan tätä erikseen.
+\end{flushleft}
+\end{slide}
+
+
+\begin{slide}{Kirjasintyyli}
+Helpointa on vaihtaa dokumentin tyyli kerralla ja yhtenäisesti lataamalla
+jokin valmis tyylipaketti (\texttt{.sty}) heti otsikossa:\medskip
+\begin{verbatim}
+\usepackage{tyyli}
+\end{verbatim}\medskip
+\begin{flushleft}
+missä tyyli on mahdollisesti jokin listasta \texttt{helvet, palatino,
+avant, charter, bookman, newcent} tai \texttt{times} (jotka ovat valmiina
+teTeX-jakelussa). \medskip
+
+Kirjasinta voi vaihtaa valitun perustyylin sisällä
+kuvailevin komennoin, esimerkiksi \verb|{\large  }| ja \verb|{\small  }|.
+\end{flushleft} 
+\end{slide}
+
+
+\begin{slide}{Kirjasintyyli\dots}
+\vspace*{-0.5cm}
+\begin{tabular}{ll}
+\verb|{\tiny Jänis}| & {\tiny Jänis} \\
+\verb|{\scriptsize Jänis}| & {\scriptsize Jänis}  \\
+\verb|{\footnotesize Jänis}| & {\footnotesize Jänis} \\ 
+\verb|{\small Jänis}| & {\small Jänis}  \\ 
+\verb|{\normalsize Jänis}| & {\normalsize Jänis}  \\
+\verb|{\large Jänis}| & {\large Jänis} \\
+\verb|{\Large Jänis}| & {\Large Jänis} \\
+\verb|{\LARGE Jänis}| & {\LARGE Jänis} \\
+\verb|{\huge Jänis}| & {\huge Jänis} \\
+\verb|{\Huge Jänis}| & {\Huge Jänis} 
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}{Kirjasintyyli\dots}
+Huomioita:
+\begin{itemize}
+\item Komennot eivät ole funktioita vaan julistuksia: \verb|\large| = tästä 
+  alkaen, tämän ympäristön loppuun käytetään suurta kirjasinta. 
+\item Ympäristö on mikä tahansa \verb|\begin{}| \dots \verb|\end{}| -lohko
+  tai aaltosulkeet \{ \dots \}.
+\item Kannattaa käyttää aaltosulkeita. Normaalikirjasinta ei tarvitse
+  erikseen vaihtaa takaisin \verb|\normalsize|-käskyllä.
+\item Kalvolla kolme viimeistä kokoa olivat samat.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Kirjasintyyli\dots}
+Triviaa:\medskip
+\begin{itemize}
+\item[K:] Miten tehdään H-U-G-E!! Jänis?
+\item[V:] \verb|\scalebox{4}{Jänis}|
+\end{itemize}\bigskip
+
+\begin{center}
+\scalebox{4}{Jänis}
+\end{center}
+\end{slide}
+
+
+\begin{slide}{Kirjasintyyli\dots}
+Lisäksi on käytössä funktiot\medskip
+
+\begin{tabular}{ll}
+\verb|\texttt{Jänis}| & \texttt{Jänis} \\
+\verb|\textit{Jänis}| & \textit{Jänis} \\
+\verb|\textbf{Jänis}| & \textbf{Jänis} \\
+\verb|\textsl{Jänis}| & \textsl{Jänis} \\
+\verb|\textsc{Jänis}| & \textsc{Jänis} \\
+\verb|\underline{Jänis}| & \underline{Jänis} \\
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}{Kirjasintyyli\dots}
+Nämä komennot riittävät mainiosti tyylikkään tekstin tekoon.\medskip
+
+Lisää kirjasimia voi etsiskellä \LaTeX-jakelustaan metsästämällä
+\texttt{.fd} (font definition) -tiedostoja. Esimerkiksi 
+\texttt{t1pbk.fd} (T1 encoded postscript Bookman font definition)
+otetaan käyttöön käskyllä
+\begin{verbatim}
+\fontfamily{pbk}\selectfont
+JepJep!
+\end{verbatim}
+{\fontfamily{pbk}\selectfont
+JepJep!}
+\end{slide}
+
+
+\begin{slide}{Kirjasintyyli\dots}
+Kannattaa määritellä joukko komentoja, jotka vastaavat järjestelmään
+asennettuja kirjasimia:\medskip
+\begin{verbatim}
+\newcommand{\avantgar}[1]{
+{\fontfamily{pag}\selectfont #1}}
+\end{verbatim}\medskip
+jne...
+{\tiny
+\begin{verbatim}
+\newcommand{\bookman}[1]{{\fontfamily{pbk}\selectfont #1}}
+\newcommand{\courier}[1]{{\fontfamily{pcr}\selectfont #1}}
+\newcommand{\cmodern}[1]{{\fontfamily{cmr}\selectfont #1}}
+\newcommand{\helvetic}[1]{{\fontfamily{phv}\selectfont #1}}
+\newcommand{\newcent}[1]{{\fontfamily{pnc}\selectfont #1}}
+\newcommand{\tmroman}[1]{{\fontfamily{ptm}\selectfont #1}}
+\newcommand{\script}[1]{{\fontfamily{pzc}\selectfont #1}}
+\end{verbatim}}
+\end{slide}
+
+
+\begin{slide}{Kirjasintyyli\dots}
+Näin saadaan \LaTeX in ideaan hyvin istuvat komennot\medskip
+
+\newcommand{\avantgar}[1]{{\fontfamily{pag}\selectfont #1}}
+\newcommand{\bookman}[1]{{\fontfamily{pbk}\selectfont #1}}
+\newcommand{\courier}[1]{{\fontfamily{pcr}\selectfont #1}}
+\newcommand{\cmodern}[1]{{\fontfamily{cmr}\selectfont #1}}
+\newcommand{\helvetic}[1]{{\fontfamily{phv}\selectfont #1}}
+\newcommand{\newcent}[1]{{\fontfamily{pnc}\selectfont #1}}
+\newcommand{\tmroman}[1]{{\fontfamily{ptm}\selectfont #1}}
+\newcommand{\script}[1]{{\fontfamily{pzc}\selectfont #1}}
+
+\begin{tabular}{ll}
+\verb|\avantgar{Jänis}| & \avantgar{Jänis} \\
+\verb|\bookman{Jänis}| & \bookman{Jänis} \\
+\verb|\courier{Jänis}| & \courier{Jänis} \\
+\verb|\cmodern{Jänis}| & \cmodern{Jänis} \\
+\verb|\helvetic{Jänis}| & \helvetic{Jänis} \\
+\verb|\tmroman{Jänis}| & \tmroman{Jänis} \\
+%\verb|\utopia{Jänis}| & \utopia{Jänis} \\
+\verb|\script{Jänis}| & \script{Jänis} \\
+\end{tabular}\medskip 
+
+joilla onkin ilo turmella muuten tyylikäs dokumentti!
+\end{slide}
+
+
+\begin{slide}{Johtopäätökset\dots}
+Toimiva strategia Pro graduun, luentomonisteeseen ja vastaaviin:
+\begin{itemize}
+\item Tee kansisivu suoraan, seuraavalla kerralla se menee
+  kuitenkin uusiksi.
+\item Kirjoita teksti mahdollisimman puhtaalla \LaTeX illa, ja
+  mahdollisesti AMS:n (American Mathematical Societyn) makroilla $\to$
+  siirrettävyys.
+\item Tee oma tyylitiedosta tai lataa jokin valmis.
+\item Pikkujutut, kuten lyhyet omat komennot tiedoston alkuun
+  ennen \verb|\begin{document}| avainsanaa
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Johtopäätökset\dots}
+\begin{itemize}
+\item Dokumentti, jossa on \LaTeX -koodia, vanhaa \TeX -koodia ja tekstiä
+  täydessä sekamelskassa on painajainen päivittää tai lähettää lehteen.
+\item \LaTeX{} on iso ohjelmisto ja käyttäjistä suurin osa hallitsee vain
+  alkeet, mikä riittääkin usein mainiosti!
+\end{itemize}
+\end{slide}
+
+
+
+\end{document}
+

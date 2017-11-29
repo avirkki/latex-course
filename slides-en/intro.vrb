@@ -1,0 +1,13 @@
+\frametitle{Summary}
+\begin{itemize}
+  \item The LaTeX manuscript file consists of plain text. It takes only a
+  little amount of disk space and it is simple to send to others.
+  \item The manuscript always begins with the
+  ``\verb|\documentclass[<params>]{<class>}|'' command\footnote{I suggest to
+  copy the preamble from an existing template.\\ Try to avoid the ancient
+  templates from the early 80's, as things have changes since that.}.
+\item The text consists of the commands (called tags in HTML) and the actual
+  text.
+\item This is not harder that writing HTML5 / CSS3 by hand. To be honest,
+LaTeX is much easier!
+\end{itemize}

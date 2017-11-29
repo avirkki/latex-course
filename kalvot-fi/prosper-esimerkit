@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo 'texing...'
+for p in prosper_*.tex 
+  do
+  latex $p > /dev/null
+  latex $p > /dev/null
+done
+
+echo 'making pdfs...'
+for p in prosper_*.dvi
+  do
+  dvipdf $p
+done
+
+echo 'cleaning up.'
+rm prosper*.{aux,dvi,log,out}
+
+echo 'combining...'
+
+#gs -sDEVICE=pdfwrite -dBATCH -dNOPAUSE -sOutputFile="prosper-part.pdf" \
+#-sPAPERSIZE=a4 -q prosper_{corners,darkblue,whitecross}.pdf \
+#prosper_{capsules,contemporain,rico}.pdf prosper-end.pdf
+
+pdftk prosper_{corners,darkblue,whitecross}.pdf \
+prosper_{capsules,contemporain,rico}.pdf  \
+cat output prosper-esimerkit.pdf

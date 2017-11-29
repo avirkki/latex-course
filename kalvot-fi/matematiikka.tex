@@ -1,0 +1,815 @@
+% Hienoiksi havaittuja tyylejä:
+% rico,contemporain,darkblue,frames,blends,whitecross,corners,capsules
+%
+\documentclass[a4paper,slideColor,colorBG,pdf,corners]{prosper}
+\usepackage[latin1]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{url}
+\usepackage{fancybox}
+
+
+% Nämä asiat voivat muuttua:
+\newcommand{\plus}{\makebox[1.3em]{+}}
+\newcommand{\minus}{\makebox[1.3em]{-}}
+
+
+\begin{document}
+
+\title{Osa 4: Matematiikan ladonta}
+\author{}
+\Logo(10.5,-0.8){\includegraphics[width=8mm]{soihtu}}
+\maketitle
+
+
+\begin{slide}{Matematiikan ladonta}
+Tekstiin tulevat kaavat kirjoitetaan \verb|$$|-merkkien väliin näin: 
+\verb|$\sum_{k=1}^\infty a_k$|, jolloin saadaan $\sum_{k=1}^\infty a_k$.
+Omalle rivilleen tulevat kaavat kirjoitetaan
+\verb|\begin{equation}..\end{equation}| tai
+\verb|\[..\]| -ympäristöihin, jolloin saadaan
+\begin{equation}
+\sum_{k=1}^\infty a_k
+\end{equation}
+ja
+\[ \sum_{k=1}^\infty a_k. \] 
+\end{slide}
+
+
+\begin{slide}{Matematiikan ladonta\dots}
+Huomaa ero indeksien sijoittelussa (yläpuolella vai yläkulmassa).\bigskip
+
+Triviaa: tyyli voidaan pakottaa myös käskyillä
+\begin{itemize}
+\item \verb|\textstyle|
+\item \verb|\displaystyle|
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Matematiikan ladonta\dots}
+Matematiikkatilassa kirjamet, eli muuttujat ja vakiot, ladotaan
+vinokirjaimin ja välilyönnit jätetään huomiotta:
+\begin{verbatim}
+\begin{equation}
+I(x) := a_1^2       b_{1,2}   c     x    .
+\end{equation}
+\end{verbatim}
+tuottaa kaavan
+\begin{equation}
+I(x) := a_1^2       b_{1,2}   c     x    .
+\end{equation}
+\begin{flushleft}
+(Triviaa: jos kaavat ovat osa lausetta, niiden perään laitetaan
+välimerkit käytetyn kielen sääntöjen mukaan. Suomen ja englannin
+pilkutussäännöt eivät ole samat!)
+\end{flushleft}
+\end{slide}
+
+
+\begin{slide}{Matematiikan ladonta\dots}
+Merkeillä
+\begin{verbatim}
+# $ % & ~ _ ^ \ { } '
+\end{verbatim}
+on erikoistulkinta; vertaa f' ja $f'$.
+Jos muita edellisistä merkeistä 
+halutaan kaavoihin, on kirjoitettava
+\begin{verbatim}
+\#   \$   \%   \&   \_   \{   \} ,
+\end{verbatim}
+esimerkiksi
+\begin{verbatim}
+\[ \mathcal{L}\{f\}(s) := 
+   \int_0^\infty f(t) e^{-st} dt \]
+\end{verbatim}
+\[ \mathcal{L}\{f\}(s) := 
+   \int_0^\infty f(t) e^{-st} dt \]
+\end{slide}
+
+
+\begin{slide}{Matematiikan ladonta\dots}
+\begin{itemize}
+\item Koska näppäimistöltä puuttuu suurin osa matematiikan merkinnöistä,
+erikoiskäskyjä tarvitaan paljon
+\item Käskyt oppii helpoiten esimerkein ja itse kirjoittamalla.
+\end{itemize}
+Käydään seuraavassa ladontaa läpi esimerkkien avulla.
+\end{slide}
+
+
+\begin{slide}{Ylä- ja alaindeksit}
+Ylä- ja alaindeksit saadaan käskyillä \verb|^| ja \verb|_|. \bigskip
+
+\begin{verbatim}
+\[ V^2_1 \ge V_{21} \]
+\end{verbatim}
+
+\[ V^2_1 \ge V_{21} \]
+Jos indeksejä on monta, ne pitää ryhmitellä aaltosulkein.
+\end{slide}
+
+
+\begin{slide}{Rationaalilausekkeet}
+\begin{verbatim}
+\[ \frac{a}{b} \]
+\[ \sqrt{2} \approx 1.4142 \]
+\end{verbatim}\bigskip
+
+\[ \frac{a}{b} \]
+\[ \sqrt{2} \approx 1.4142 \]
+\end{slide}
+
+
+\begin{slide}{Rationaalilausekkeet\dots}
+\begin{verbatim}
+\[ \left(
+   \frac{\sqrt[3]{z-1}}{2}
+   \right)^2 \]
+\end{verbatim}\bigskip
+\[ \left(\frac{\sqrt[3]{z-1}}{2}\right)^2 \]
+\end{slide}
+
+
+\begin{slide}{Rationaalilausekkeet\dots}
+Kertaus:
+\begin{itemize}
+\item Murtoluku: \verb|\frac{numerator}{denominator}| 
+\item Juuri: \verb|\sqrt{}| ja \verb|\sqrt[n]{}| (!)
+\item Käskyillä \verb|\left(| ja \verb|\right)| saadaan automaattisesti
+  sopivan kokoiset sulut
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Rationaalilausekkeet\dots}
+Ketjumurtoluvut (continuous fractions):\bigskip
+
+\begin{verbatim}
+\[ a_0 + \cfrac{1}
+         {a_1 + \cfrac{1}
+                {a_2+\frac{1}{a_3}}} \]
+\end{verbatim}\bigskip
+\[ a_0 + \cfrac{1}
+         {a_1 + \cfrac{1}
+                {a_2+\frac{1}{a_3}}} \]
+\end{slide}
+
+
+\begin{slide}{Derivaatat}
+\begin{verbatim}
+\[ \frac{dy}{dt} = f(y;\lambda) \]
+\[ \frac{\partial u}{\partial t} = \kappa^2 
+   \left( \frac{\partial^2 u}{\partial x^2}
+        + \frac{\partial^2 u}{\partial y^2}
+        + \frac{\partial^2 u}{\partial z^2} 
+      \right) \]
+\end{verbatim}
+\[ \frac{dy}{dt} = f(y;\lambda) \]
+\[ \frac{\partial u}{\partial t} = \kappa^2 
+   \left( \frac{\partial^2 u}{\partial x^2}
+        + \frac{\partial^2 u}{\partial y^2}
+        + \frac{\partial^2 u}{\partial z^2} 
+      \right) \]
+\end{slide}
+
+
+\begin{slide}{Raja-arvot, summat, itegraalit}
+\begin{verbatim}
+\[ \lim_{x \to 0} 
+   \frac{3x^2 +7x^3}{x^2 +5x^4} = 3.\] 
+\end{verbatim}
+\[ \lim_{x \to 0} 
+   \frac{3x^2 +7x^3}{x^2 +5x^4} = 3.\]\bigskip
+
+\begin{verbatim}
+\[ \sum_{k=1}^\infty \frac{1}{2^k} = 
+   \frac{\pi^2}{6} \]
+\end{verbatim}
+\[ \sum_{k=1}^\infty \frac{1}{2^k} = 
+   \frac{\pi^2}{6} \]
+\end{slide}
+
+
+\begin{slide}{Raja-arvot, summat, itegraalit\dots}
+\begin{verbatim}
+\[ \int_{-\infty}^\infty \sin(x)\ dx = \pi \]
+\end{verbatim}
+\[ \int_{-\infty}^\infty \sin(x)\ dx = \pi \]\bigskip
+\begin{verbatim}
+\[ \oint_{\partial C} h(z)\ dz = 0 \]
+\end{verbatim}
+\[ \oint_{\partial C} h(z)\ dz = 0 \]
+\end{slide}
+
+
+\begin{slide}{Raja-arvot, summat, itegraalit\dots}
+\begin{verbatim}
+\[ \int\limits_{-\infty}^\infty 
+   \sin(x)\ dx = \pi \]
+\end{verbatim}
+\[ \int\limits_{-\infty}^\infty 
+   \sin(x)\ dx = \pi \]\bigskip
+\begin{verbatim}
+\[ \oint\limits_{\partial C} h(z)\ dz = 0 \]
+\end{verbatim}
+\[ \oint\limits_{\partial C} h(z)\ dz = 0 \]
+\end{slide}
+
+
+\begin{slide}{Kertaus ja triviaa}
+\begin{itemize}
+\item Ylä- ja alaindeksit käskyillä \verb|^| ja \verb|_|
+\item Kaavaan voi pakottää välilyönnin käskyllä \verb|\ | 
+(takakeno + välilyönti)
+\item Käsky \verb|\limits| latoo ylä- ja alaindeksit näkyvämmin
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Välilyönneistä kaavoissa}
+\begin{verbatim}
+\[ a\, b \]
+\[ a\: b \]
+\[ a\  b \]
+\[ a\! b \]
+\end{verbatim}
+\[ a\, b \]
+\[ a\: b \]
+\[ a\  b \]
+\[ a\! b \]
+\begin{itemize}
+\item Viimeinen käsky \verb|\!| on negatiivinen välilyönti.
+\item Käytä hienosäätöä säästäen
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Kirjasintyyli}
+Metematiikkatilassa leipätekstin kirjasinkomennot eivät toimi.
+Tarjolla on näiden sijaan komennot
+\begin{tabular}{ll}
+\verb|A| & $A$ \\
+\verb|\mathrm{A}| & $\mathrm{A}$ \\
+\verb|\mathbf{A}| & $\mathbf{A}$ \\
+\verb|\mathbb{A}| & $\mathbb{A}$  \\
+\verb|\mathcal{A}| & $\mathcal{A}$, \\
+\end{tabular}\\
+joista kaksi viimeistä toimii vain
+isoille kirjaimille.
+\end{slide}
+
+
+\begin{slide}{Kirjasintyyli, esimerkkejä}
+\begin{verbatim}
+\[ \dot{M}_{\mathrm{CO_2}} \]
+\end{verbatim}
+\[ \dot{M}_{\mathrm{CO_2}} \]
+\begin{verbatim}
+\[ \alpha \in \mathbb{C}, \mathbf{v} \in X 
+     \Rightarrow \alpha \mathbf{v} \in X \]
+\end{verbatim}
+\[ \alpha \in \mathbb{C}, \mathbf{v} \in X 
+     \Rightarrow \alpha \mathbf{v} \in X \]
+\begin{itemize}
+\item Kemialliset kaavat kirjoitetaan pystykirjaimin
+\item (Modernissa kirjallisuudessa vektorit jätetään
+  usen koristelematta; kirjoitetaan vain $v \in X$)
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Kirjasinten koko}
+Kirjasinten kokoa muutetaan samoin eri komennoin:
+\begin{tabular}{ll}
+\verb|{\scriptscriptstyle \sum}| & ${\scriptscriptstyle \sum}$ \\
+\verb|{\scriptstyle \sum}| & ${\scriptstyle \sum}$ \\
+\verb|{\textstyle \sum}| & ${\textstyle \sum}$  \\
+\verb|{\displaystyle \sum}| & ${\displaystyle \sum}$, \\
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}{Funktioiden nimet}
+\LaTeX tuntee tavallisimmat funktioiden nimet:\bigskip
+\begin{verbatim}
+\[ \cos (\pi) = -1 \]
+\end{verbatim}
+\[ \cos (\pi) = -1 \]\bigskip
+
+\begin{verbatim}
+\[ \sin (0) = 0 \]
+\end{verbatim}
+\[ \sin (0) = 0 \]
+\end{slide}
+
+
+\begin{slide}{Funktioiden nimet\dots}
+Tunnettuja nimiä ovat
+\begin{verbatim}
+\arccos \cos  \csc    \exp  \ker    \limsup 
+\min    \sinh \arcsin \cosh \def    \gcd  
+\lg     \ln   \Pr     \sup  \arctan \cot 
+\det    \hom  \lim    \log  \sec    \tan
+\arg    \coth \dim    \inf  \liminf \max    
+\sin    \tanh
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{Funktioiden nimet\dots}
+Omia merkintöjä voi \emph{julistaa} operaattoreiksi käskyllä
+\verb|\operatorname|.\bigskip
+\begin{verbatim}
+\[ \operatorname{arg min}_
+   \Theta f(\Theta) \]
+\end{verbatim}
+\[ \operatorname{arg min}_\Theta f(\Theta) \]
+\end{slide}
+\begin{slide}{Funktioiden nimet\dots}
+Edellinen esimerkki kaipaa vielä hieman hienosäätöä:
+\begin{verbatim}
+\[ \operatorname{arg\ min}_
+   \Theta f(\Theta) \]
+\end{verbatim}
+\[ \operatorname{arg\ min}_\Theta f(\Theta) \]
+\begin{verbatim}
+\[ \underset{\Theta}
+   {\operatorname{arg\ min}} f(\Theta) \]
+\end{verbatim}
+\[ \underset{\Theta}{\operatorname{arg\ min}} f(\Theta) \]
+\end{slide}
+
+
+\begin{slide}{Tekstin ja kaavojen sekoittaminen}
+\LaTeX :
+\begin{verbatim}
+\[ S := \{ x\in \Omega | f(x) = c 
+           \mbox{ ja } g(x) < 0 \} \]
+\end{verbatim}\bigskip
+\[ S := \{ x\in \Omega | f(x) = c \mbox{ ja } g(x) < 0 \} \]
+AMS-\LaTeX :
+\begin{verbatim}
+\[ S := \{ x\in \Omega | f(x) = cko
+           \text{ ja } g(x) < 0 \} \]
+\end{verbatim}\bigskip
+\[ S := \{ x\in \Omega | f(x) = c \text{ ja } g(x) < 0 \} \]
+\end{slide}
+
+
+\begin{slide}{Kolme pistettä(\dots)}
+Kolme pistettä:\bigskip
+\begin{verbatim}
+\[ a_0 + a_2 + \cdots + a_n \]
+\[ \ldots, \cdots, \ddots, \vdots \]
+\end{verbatim} \bigskip
+\[ a_0 + a_2 + \cdots + a_n \]
+\[ \ldots, \cdots, \ddots, \vdots \]
+\end{slide}
+
+
+\begin{slide}{Matemaattiset aksentit}
+\begin{tabular}{llll}
+\verb|\underline{a}| & $\underline{a}$ &
+\verb|\overline{a}| & $\overline{a}$ \\
+\verb|\hat{a}| & $\hat{a}$ &
+\verb|\check{a}| & $\check{a}$ \\
+\verb|\tilde{a}| & $\tilde{a}$ &
+\verb|\acute{a}| & $\acute{a}$ \\
+\verb|\grave{a}| & $\grave{a}$ &
+\verb|\dot{a}| & $\dot{a}$ \\
+\verb|\ddot{a}| & $\ddot{a}$ &
+\verb|\breve{a}| & $\breve{a}$ \\
+\verb|\bar{a}| & $\bar{a}$ &
+\verb|\vec{a}| & $\vec{a}$ 
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}{Normi ja sulut}
+Normi:\bigskip
+\begin{verbatim}
+\[ \|a x\| = |a| \|x\| \]
+\end{verbatim} \bigskip
+\[ \|a x\| = |a| \|x\| \]
+\end{slide}
+
+
+\begin{slide}{Normi ja sulut\dots}
+Näkymätön sulku saadaan aikaan pisteellä:\bigskip
+\begin{verbatim}
+\[ \left( \frac{1+z}{1-z} \right. \]
+\[ \left. \frac{du}{dx} \right|_{x=0} \]
+\end{verbatim}\bigskip
+\[ \left( \frac{1+z}{1-z} \right. \]
+\[ \left. \frac{du}{dx} \right|_{x=0} \]
+\end{slide}
+
+
+\begin{slide}{Moniriviset kaavat}
+\begin{verbatim}
+\begin{eqnarray}
+F(x) &= & \int_a^b I(u,x) du  \nonumber \\
+     &= & \frac{1}{\sqrt{\pi}}G(x)
+\end{eqnarray}
+\end{verbatim}\bigskip
+\begin{eqnarray}
+F(x) &= & \int_a^b I(u,x) du  \nonumber \\
+     &= & \frac{1}{\sqrt{\pi}}G(x)
+\end{eqnarray}
+\end{slide}
+
+
+\begin{slide}{Moniriviset kaavat\dots}
+\begin{itemize}
+\item \verb|eqnarray| on kuten taulukko, mutta siinä on
+kiinteästi kolme riviä
+\item Numeroinnin voi kieltää komennolla \verb|\nonumber|
+\item Jos numeroita ei haluta lainkaan, voidaan käytää
+muotoa \verb|\begin{eqnarray*}| \dots \verb|\end{eqnarray*}|
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Matriisi}
+Kuten taulukko,\bigskip
+\begin{verbatim}
+\[ \left[\begin{array}{ccc}
+    1 & 0 & 2  \\
+    0 & 2 & 0  \\
+    0 & 0 & a \end{array}\right] \]
+\end{verbatim}
+
+\[ \left[\begin{array}{ccc}
+    1 & 0 & 2  \\
+    0 & 2 & 0  \\
+    0 & 0 & a \end{array}\right] \]
+\end{slide}
+
+
+\begin{slide}{Matriisi\dots}
+tai AMS-paketilla:\bigskip
+\begin{verbatim}
+\[ \begin{bmatrix}
+  1 & 0 & 2  \\
+  0 & 2 & 0  \\
+  0 & 0 & a \end{bmatrix} \]
+\end{verbatim}
+\[ \begin{bmatrix}
+  1 & 0 & 2  \\
+  0 & 2 & 0  \\
+  0 & 0 & a \end{bmatrix} \]
+\end{slide}
+
+
+\begin{slide}{Matriisi\dots}
+\dots tai \dots \bigskip
+\begin{verbatim}
+\[ \begin{pmatrix}
+  1 & 0 & 2  \\
+  0 & 2 & 0  \\
+  0 & 0 & a \end{pmatrix} \]
+\end{verbatim}
+\[ \begin{pmatrix}
+  1 & 0 & 2  \\
+  0 & 2 & 0  \\
+  0 & 0 & a \end{pmatrix} \]
+\end{slide}
+
+
+\begin{slide}{Paloittain määritellyt funktiot}
+Kuten taulukko,\bigskip
+\begin{verbatim}
+\[ |x| = \left\{ \begin{array}{rl}
+    x & \mbox{jos $x \geq 0$};\\
+   -x & \mbox{jos $x < 0$}.\end{array}
+   \right. \] 
+\end{verbatim}
+\[ |x| = \left\{ \begin{array}{rl}
+         x & \mbox{jos $x \geq 0$};\\
+        -x & \mbox{jos $x < 0$}.\end{array} \right. \] 
+\end{slide}
+
+
+\begin{slide}{Paloittain määritellyt funktiot\dots}
+tai AMS-paketilla:\bigskip
+\begin{verbatim}
+\[ |x| = \left\{ \begin{aligned}
+    x & \text{ jos } x \geq 0;\\
+   -x & \text{ jos } x < 0.\end{aligned}
+   \right. \] 
+\end{verbatim}
+\[ |x| = \left\{ \begin{aligned}
+    x & \text{ jos } x \geq 0;\\
+   -x & \text{ jos } x < 0.\end{aligned}
+   \right. \] 
+\end{slide}
+
+
+\begin{slide}{Ryhmittely kaarisulkein}
+Kaavojen ylä- ja alapuolelle voi lisätä sulkeita:\bigskip
+\begin{verbatim}
+\[ \underbrace{A}_{\star} \]
+\end{verbatim}
+\[ \underbrace{A}_{\star} \]\bigskip
+\begin{verbatim}
+\[ \overbrace{B}^{\dag} \]
+\end{verbatim}
+\[ \overbrace{B}^{\dag} \]
+\end{slide}
+
+
+
+\begin{slide}{Ryhmittely kaarisulkein\dots}
+Esimerkki:\bigskip
+\begin{verbatim}
+\[ y' = \overbrace{
+   \underbrace{Ay}_{\text{linear part}} + 
+   \underbrace{By^R}_{\text{nonlinear part}}
+   }^{\text{the driving force}} \]
+\end{verbatim}
+\[ y' = \overbrace{
+        \underbrace{Ay}_{\text{linear part}} + 
+        \underbrace{By^R}_{\text{nonlinear part}}
+      }^{\text{the driving force}} \]
+\end{slide}
+
+
+\begin{slide}{Laatikointi}
+Laatikon lisääminen kaavan ympärille:\bigskip
+\begin{verbatim}
+\[ \boxed{\frac{1}{1+x}} \]
+\end{verbatim}
+\[ \boxed{\frac{1}{1+x}} \]\bigskip
+
+\begin{itemize}
+\item Saattaa selventää esitystä 
+\item \dots tai sotkea lisää.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Laatikoiti\dots}
+Esimerkki:\bigskip
+\begin{verbatim}
+\begin{eqnarray*}  
+\| x - z \| &= &\| x\ \boxed{-y+y} - z \|\\
+         &\leq &\| x - y \| + \| y - z \| 
+\end{eqnarray*}
+\end{verbatim}
+\begin{eqnarray*}  
+\| x - z \| &=    &\| x\ \boxed{-y+y} - z \| \\
+            &\leq &\| x - y \| + \| y - z \| 
+\end{eqnarray*}
+\end{slide}
+
+
+\begin{slide}{AMS:n lisäkäskyt}
+Tällä kurssilla käytetään AMS-pakettien 
+lisätyökaluja ilman eri mainintaa, mutta seuraavat
+käskyt ovat erityisesti AMS-paketista \texttt{amsmath}:\bigskip
+
+\begin{tabular}{ll}
+\verb|\iint| & $\iint$ \\
+\verb|\iiint| & $\iiint$ \\
+\verb|\iiiint| & $\iiiint$ \\
+\verb|\idotsint| & $\idotsint$ \\
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}{AMS:n lisäkäskyt\dots}
+\begin{verbatim}
+\[ \sum_{\substack{k=1\dots n\\ 
+                   l=1\dots m\\
+                   k\neq l}} 
+    a_{k,l} \]
+\end{verbatim}
+\[ \sum_{\substack{k=1\dots n\\ 
+                   l=1\dots m\\
+                   k\neq l}} 
+    a_{k,l} \]
+\end{slide}
+
+
+\begin{slide}{AMS:n lisäkäskyt\dots}
+\begin{verbatim}
+\[ \overset{*}{A}, \underset{*}{B} \]
+\end{verbatim}
+\[ \overset{*}{A}, \underset{*}{B} \]\bigskip
+\begin{verbatim}
+\[ \sideset{_a^b}{_c^d}\prod \]
+\end{verbatim}
+\[ \sideset{_a^b}{_c^d}\prod \]
+\end{slide}
+
+
+\begin{slide}{Kreikkalaiset kirjaimet}
+\begin{tabular}{llllll}
+\verb|\alpha| & $\alpha$ &
+\verb|\beta| & $\beta$ &
+\verb|\gamma| & $\gamma$ \\
+\verb|\delta| & $\delta$  &
+\verb|\epsilon| & $\epsilon$ &
+\verb|\varepsilon| & $\varepsilon$\\
+\verb|\zeta| & $\zeta$ &
+\verb|\eta| & $\eta$ &
+\verb|\theta| & $\theta$ \\
+\verb|\vartheta| & $\vartheta$ &
+\verb|\iota| & $\iota$ & 
+\verb|\kappa| & $\kappa$ \\
+\verb|\lambda| & $\lambda$ &
+\verb|\mu| & $\mu$ &
+\verb|\nu| & $\nu$ \\
+\verb|\xi| & $\xi$ &
+\verb|\pi| & $\pi$ &
+\verb|\varpi| & $\varpi$\\
+\verb|\rho| & $\rho$ &
+\verb|\varrho| & $\varrho$ &
+\verb|\sigma| & $\sigma$ \\
+\verb|\varsigma| & $\varsigma$ &
+\verb|\tau| & $\tau$ &
+\verb|\upsilon| & $\upsilon$ \\
+\verb|\phi| & $\phi$ &
+\verb|\varphi| & $\varphi$ &
+\verb|\chi| & $\chi$ \\
+\verb|\psi| & $\psi$ &
+\verb|\omega| & $\omega$ 
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}{Kreikkalaiset isot kirjaimet}
+Oma käskynsä on vain niille isoille kirjaimille, joita ei
+näppäimistöllä ole valmiiksi:\bigskip
+
+\begin{tabular}{llllll}
+\verb|\Gamma| & $\Gamma$ &
+\verb|\Delta| & $\Delta$ &
+\verb|\Theta| & $\Theta$ \\
+\verb|\Lambda| & $\Lambda$ &
+\verb|\Xi| & $\Xi$ &
+\verb|\Pi| & $\Pi$ \\
+\verb|\Sigma| & $\Sigma$ &
+\verb|\Upsilon| & $\Upsilon$ &
+\verb|\Phi| & $\Phi$ \\
+\verb|\Psi| & $\Psi$ &
+\verb|\Omega| & $\Omega$
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}{Symbolit: relaatiot}
+\begin{tabular}{llllll}
+\verb|\approx| & $\approx$ &
+\verb|\asymp| & $\asymp$ &
+\verb|\bowtie| & $\bowtie$ \\
+\verb|\cong| & $\cong$ &
+\verb|\dashv| & $\dashv$ &
+\verb|\doteq| & $\doteq$ \\
+\verb|\equiv| & $\equiv$ &
+\verb|\frown| & $\frown$ &
+\verb|\ge| tai \verb|\geq| & $\geq$ \\
+\verb|\gg| & $\gg$ &
+\verb|\in| & $\in$ &
+\verb|\le| tai \verb|\leq| & $\leq$ \\
+\verb|\ll| & $\ll$ &
+\verb|\mid| tai \verb"|" & $\mid$ &
+\verb|\models| & $\models$ \\ 
+\verb|\neq| & $\neq$ &
+\verb|\ni| & $\ni$ &
+\verb|\notin| & $\notin$
+\end{tabular}
+\end{slide}
+\begin{slide}{Symbolit: relaatiot\dots}
+\begin{tabular}{llllll}
+\verb|\parallel| & $\parallel$ &
+\verb|\prec|& $\prec$ &
+\verb|\preceq|& $\preceq$ \\
+\verb|\perp| & $\perp$ &
+\verb|\propto| & $\propto$ &
+\verb|\sim| & $\sim$ \\
+\verb|\simeq| & $\simeq$ &
+\verb|\smile| & $\smile$ &
+\verb|\sqsubseteq| & $\sqsubseteq$ \\
+\verb|\sqsupseteq| & $\sqsupseteq$ &
+\verb|\subset| & $\subset$ &
+\verb|\subseteq| & $\subseteq$ \\
+\verb|\succ| & $\succ$ &
+\verb|\succeq| & $\succeq$ &
+\verb|\supset| & $\supset$ \\
+\verb|\supseteq| & $\supseteq$ &
+\verb|\vdash| & $\vdash$ &
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}{Symbolit: binäärioperaattorit}
+\begin{tabular}{llll}
+\verb|\amalg| & $\amalg$ &
+\verb|\ast| & $\ast$ \\
+\verb|\bullet| & $\bullet$ &
+\verb|\bigcirc| & $\bigcirc$ \\
+\verb|\bigtriangledown| & $\bigtriangledown$ &
+\verb|\bigtriangleup| & $\bigtriangleup$ \\
+\verb|\cap| & $\cap$ &
+\verb|\cdot| & $\cdot$ \\
+\verb|\circ| & $\circ$ &
+\verb|\cup| & $\cup$  \\
+\verb|\dagger| & $\dagger$ &
+\verb|\ddagger| & $\ddagger$ \\
+\verb|\diamond| & $\diamond$ &
+\verb|\div| & $\div$ \\
+\verb|\mp| & $\mp$ &
+\verb|\odot| & $\odot$ 
+\end{tabular}
+\end{slide}
+\begin{slide}{Symbolit: binäärioperaattorit\dots}
+\begin{tabular}{llll}
+\verb|\ominus| & $\ominus$ &
+\verb|\oplus| & $\oplus$ \\
+\verb|\oslash| & $\oslash$ &
+\verb|\otimes| & $\otimes$ \\
+\verb|\pm| & $\pm$ &
+\verb|\setminus| & $\setminus$ \\
+\verb|\sqcap| & $\sqcap$ &
+\verb|\sqcup| & $\sqcup$ \\
+\verb|\star| & $\star$ &
+\verb|\times| & $\times$ \\
+\verb|\triangleleft| & $\triangleleft$ &
+\verb|\triangleright| & $\triangleright$ \\
+\verb|\uplus| & $\uplus$ &
+\verb|\vee| & $\vee$ \\
+\verb|\wedge| & $\wedge$ &
+\verb|\wr| & $\wr$
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}{Symbolit: nuolet}
+\begin{tabular}{llll}
+\verb|\downarrow| & $\downarrow$ \\
+\verb|\Downarrow| & $\Downarrow$ \\
+\verb|\hookleftarrow| & $\hookleftarrow$ \\
+\verb|\hookrightarrow| & $\hookrightarrow$ \\
+\verb|\leftarrow| tai \verb|\gets| & $\leftarrow$ \\
+\verb|\Leftarrow| & $\Leftarrow$ \\
+\verb|\leftharpoondown| & $\leftharpoondown$ \\
+\verb|\leftharpoonup| & $\leftharpoonup$ \\
+\verb|\leftrightarrow| & $\leftrightarrow$ \\
+\verb|\Leftrightarrow| & $\Leftrightarrow$ 
+\end{tabular}
+\end{slide}
+\begin{slide}{Symbolit: nuolet\dots}
+\begin{tabular}{llll}
+\verb|\longleftarrow| & $\longleftarrow$ \\
+\verb|\Longleftarrow| & $\Longleftarrow$ \\
+\verb|\longleftrightarrow| & $\longleftrightarrow$ \\
+\verb|\Longleftrightarrow| & $\Longleftrightarrow$ \\
+\verb|\longmapsto| & $\longmapsto$ \\
+\verb|\longrightarrow| & $\longrightarrow$ \\
+\verb|\Longrightarrow| & $\Longrightarrow$ \\
+\verb|\mapsto| & $\mapsto$ \\
+\verb|\nearrow| & $\nearrow$ \\
+\verb|\nwarrow| & $\nwarrow$ \\
+\end{tabular}
+\end{slide}
+\begin{slide}{Symbolit: nuolet\dots}
+\begin{tabular}{llll}
+\verb|\rightarrow| tai \verb|\to| & $\to$ \\
+\verb|\Rightarrow| & $\Rightarrow$ \\
+\verb|\rightharpoondown| & $\rightharpoondown$ \\
+\verb|\rightharpoonup| & $\rightharpoonup$ \\
+\verb|\rightleftharpoons| & $\rightleftharpoons$ \\
+\verb|\searrow| & $\searrow$ \\
+\verb|\swarrow| & $\swarrow$ \\
+\verb|\uparrow| & $\uparrow$ \\
+\verb|\Uparrow| & $\Uparrow$ \\
+\verb|\updownarrow| & $\updownarrow$ \\
+\verb|\Updownarrow| & $\Updownarrow$ \\
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}{Symbolit: isot symbolit}
+\begin{tabular}{llllll}
+\verb|\sum| & $\sum$ &
+\verb|\int| & $\int$ &
+\verb|\oint| & $\oint$ \\[5pt]
+\verb|\prod| & $\prod$ &
+\verb|\coprod| & $\coprod$ &
+\verb|\bigcap| & $\bigcap$ \\[5pt]
+\verb|\bigcup| & $\bigcup$ &
+\verb|\bigsqcup| & $\bigsqcup$ &
+\verb|\bigvee| & $\bigvee$ \\[5pt]
+\verb|\bigwedge| & $\bigwedge$ &
+\verb|\bigodot| & $\bigodot$ &
+\verb|\bigotimes| & $\bigotimes$ \\[5pt]
+\verb|\bigoplus| & $\bigoplus$ &
+\verb|\biguplus| & $\biguplus$
+\end{tabular}
+\end{slide}
+
+
+\end{document}

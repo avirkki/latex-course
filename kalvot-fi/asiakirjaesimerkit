@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Kirje
+mpage -1 -o -ba4 kirje.tex > kirje.tex.ps
+latex kirje
+dvips kirje.dvi -o kirje.ps
+gs -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="kirje-esim.pdf" \
+-q kirje.tex.ps kirje.ps
+rm kirje.ps kirje.dvi kirje.tex.ps
+
+
+# Otsikkoesimerkki
+mpage -1 -o -ba4 otsikot.tex > otsikot.tex.ps
+latex otsikot
+dvips otsikot.dvi -o otsikot.ps
+gs -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="otsikot-esim.pdf" \
+-q otsikot.tex.ps otsikot.ps
+rm otsikot.ps otsikot.dvi otsikot.tex.ps
+
+
+# Tyyliesimerkit
+for t in tyyliesimerkki{0,1,2}
+  do
+  mpage -1 -o -ba4 $t.tex > $t.tex.ps
+  latex $t
+  dvips $t.dvi -o $t.ps
+done
+
+gs -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="tyyli-esim.pdf" -q \
+tyyliesimerkki0.tex.ps tyyliesimerkki0.ps \
+tyyliesimerkki1.tex.ps tyyliesimerkki1.ps \
+tyyliesimerkki2.tex.ps tyyliesimerkki2.ps
+
+mpage -o -2 -bA4 lc2005.sty > lc2005.ps
+ps2pdf lc2005.ps
+
+rm tyyliesimerkki{0,1,2}.{ps,dvi,tex.ps} lc2005.ps
+
+
+
+# Kansilehdet
+for t in {peruskansi,kansilehti}
+  do
+  mpage -1 -o -ba4 $t.tex > $t.tex.ps
+  latex $t
+  dvips $t.dvi -o $t.ps
+done
+
+gs -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="kansi-esim.pdf" -q \
+peruskansi.tex.ps peruskansi.ps \
+kansilehti.tex.ps kansilehti.ps
+

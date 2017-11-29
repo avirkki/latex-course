@@ -1,0 +1,11 @@
+# LaTeX
+*.aux
+*.log
+*.out
+
+# Vim and Emacs backup files
+*.swp
+*~
+
+# Mac OS X extended attributes
+.DS_Store

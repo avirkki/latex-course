@@ -1,0 +1,521 @@
+% Hienoiksi havaittuja tyylejä:
+% rico,contemporain,darkblue,frames,blends,whitecross,corners,capsules
+%
+\documentclass[a4paper,slideColor,colorBG,pdf,corners]{prosper}
+\usepackage[latin1]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{url}
+\usepackage{fancybox}
+
+% Nämä asiat voivat muuttua:
+\newcommand{\plus}{\makebox[1.3em]{+}}
+\newcommand{\minus}{\makebox[1.3em]{-}}
+
+
+
+\begin{document}
+
+\title{Osa 2: \LaTeX in loogiset rakenteet}
+\author{}
+\Logo(10.5,-0.8){\includegraphics[width=8mm]{soihtu}}
+\maketitle
+
+
+\begin{slide}{Logical markup}
+Ideana on kuvata dokumentin rakenne:
+\begin{itemize}
+\item otsikot (\verb|\section{foo}|)
+\item ympäristöt (\verb|\begin{slide}|)
+\item korostukset (\verb|\emph{huomaa}|)
+\item \dots
+\end{itemize}
+Muotoilut tehdään automaattisesti median mukaan:
+tiedelehdillä ja HTML-sivuilla on jokaisella 
+oma formaattinsa.
+\end{slide}
+
+
+\begin{slide}{Käytännössä}
+\begin{itemize}
+\item Loogisia määrittelyjä käyttäessä lopputulosta ei kannata lähteä
+säätämään sivu kerrallaan. Jos kirjoittaja haluaa jonnekin
+pystysuunnassa tyhjää tilaa tai sivunvaihdon, \texttt{Enter}in
+hakkaaminen ei auta.
+\item Liika hienostelu on turhaa: suttupaperit kannattaa edelleen kirjoittaa
+TeXMacsilla, Open\-Officella tai Wordilla, sillä ne ovat nopeita tähän
+tarkoitukseen ("Quick and Dirty").
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Otsikot}
+Otsikoiden eri tasot ovat
+\begin{itemize}
+\item[-1] \verb|\part{}|
+\item[0] \verb|\chapter{}|
+\item[1] \verb|\section{}|
+\item[2] \verb|\subsection{}|
+\item[3] \verb|\subsubsection{}|
+\item[4] \verb|\paragraph{}|
+\item[5] \verb|\subparagraph{}|
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Otsikot\dots}
+\begin{itemize}
+\item Tasot  \verb|\part{}| ja \verb|\chapter{}| eivät ole käytössä kaikissa
+dokumenttipohjissa ja ne ovatkin lähinnä kirjankirjoittajia varten.
+\item Lopetusmerkkiä ei tarvita (toisin kuin HTML-kielessä, jossa kaikki
+mikä alkaa \verb|<tag>|, myös loppuu \verb|<\tag>|).
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Otsikot\dots}
+\begin{itemize}
+\item Komennolla \verb|\setcounter{secnumdepth}{n}| $n\in {0,\ldots,5}$
+voi säätää, monenteenko otsikkotasoon asti numerointi kirjoitetaan tekstiin.
+\item Katso esimerkki otsikoista ja sisällysluettelosta kurssin 
+verkkosivulta.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt}
+Tavallisimpia valmiita ympäristöjä ovat esimerkiksi
+\verb|equation|, \verb|displaymath| ja \verb|itemize|. Idea:
+\begin{verbatim}
+\begin{env1}
+  \dots.
+  \begin{env2}
+  \dots
+  \end{env2}
+\end{env1}
+\end{verbatim}
+Huomaa, että ympäristöjen on oltava sisäkkäisiä: \texttt{env1} ei voi loppua
+ennen kuin \texttt{env2} loppuu.
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: listat}
+{\small
+\begin{minipage}{0.5\textwidth}
+\begin{verbatim}
+\begin{enumerate}
+\item yksi
+\item kaksi
+\end{enumerate}
+\begin{itemize}
+\item[+] luisto
+\item[--] pito
+\end{itemize}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+\begin{enumerate}
+\item yksi
+\item kaksi
+\end{enumerate}
+\begin{itemize}
+\item[+] luisto
+\item[--] pito
+\end{itemize}
+\end{minipage}
+}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: raakateksti}
+\verb|\begin{verbatim}|\\
+\verb|o o|\\
+\verb| * |\\
+\verb|\_/|\\
+\verb|\end{verbatim}|\bigskip
+
+tuottaa tulokseksi
+\begin{verbatim}
+o o 
+ * 
+\_/
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: raakateksti\dots}
+Tietokoneohjelmat kannattaa liittää dokumenttiin käskyllä
+\verb|\verbatiminput{myprog.f90}|.\bigskip
+
+Algoritmien esittämiseen kannattaa käyttää ympäristöä, joka korostaa
+avainsanat --- luettavuus paranee oleellisesti.\footnote{Esimerkki
+  harjoitustyöstä: Etsi paketti, joka määrittelee tällaisen ympäristön
+  ja kerro esimerkein, miten pakettia käytetään. Palauta selostuksesi
+  .pdf, .tex, tai .html-muodossa. Käsin tai .doc-muotoon kirjoitettu selostus
+  hylätään lukematta.})
+\end{slide}
+
+\begin{slide}{Ympäristöt: tekstin asemointi\dots}
+\texttt{center}:
+\begin{center}
+$\sum$
+\end{center}\bigskip
+
+\texttt{flushright}:
+\begin{flushright}
+$\sum$
+\end{flushright}\bigskip
+
+\texttt{flushleft}:
+\begin{flushleft}
+$\sum$
+\end{flushleft}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: tekstin asemointi\dots}
+\begin{verbatim}
+\begin{center}
+KYNTTILÄT SYTTYVÄT VARHAIN\bigskip
+
+Kiertävät unettavat auringonnousut\\
+Kaikkialle harsona niin\\
+Aattoni vähiin käynyt\\
+Kun kevät uutena nousee\\
+\dots
+\end{center}
+\begin{flushright}
+\emph{-- Kuusumun profeetta}
+\end{flushright}
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: tekstin asemointi\dots}
+\begin{center}
+KYNTTILÄT SYTTYVÄT VARHAIN\bigskip
+
+Kiertävät unettavat auringonnousut\\
+Kaikkialle harsona niin\\
+Aattoni vähiin käynyt\\
+Kun kevät uutena nousee\\
+\dots
+\end{center}
+\begin{flushright}
+\emph{-- Kuusumun profeetta}
+\end{flushright}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: tekstin asemointi\dots}
+Joitain \LaTeX{} tarjoaa valmiina:
+\begin{verbatim}
+\begin{quote}
+Terve yrittää välttää likaista työtä ja 
+nähdä asian suoraan, ihan
+otsan kirkkaudella. --- a.p.
+\end{quote}
+\end{verbatim}
+\begin{quote}
+Terve yrittää välttää likaista työtä ja nähdä asian suoraan, ihan
+otsan kirkkaudella. --- a.p.
+\end{quote}
+Käsky \texttt{quotation} sopii pidempiin lainauksiin.
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: taulukko}
+{\small
+\begin{verbatim}
+\begin{tabular}{|l|c|c|}
+\hline
+Nimi & J. Foo & G. Bar \\
+\hline
+\hline
+A-pisteet & 1 & 3 \\
+B-pisteet & -2 & 0 \\
+\hline
+\end{verbatim}
+}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: taulukko\dots}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+Nimi & J. Foo & G. Bar \\
+\hline
+\hline
+A-pisteet & 1 & 3 \\
+B-pisteet & -2 & 0 \\
+\hline
+\end{tabular}
+\end{center}\bigskip
+
+Jotenkin tämä ei miellyttä\dots Muutetaan otsikkorivi muotoon
+{\small
+\begin{verbatim}
+\rule[-7pt]{0pt}{24pt}Nimi & J. Foo & G. Bar \\
+\end{verbatim}
+} 
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: taulukko\dots}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\rule[-7pt]{0pt}{24pt}Nimi & J. Foo & G. Bar \\
+\hline
+\hline
+A-pisteet & 1 & 3 \\
+B-pisteet & -2 & 0 \\
+\hline
+\end{tabular}
+\end{center}\bigskip
+\begin{flushleft}
+Venytimme taulukon reunoja nollapaksuisella viivalla, jolloin saimme
+siihen hieman ilmavuutta. \LaTeX in taulukot ovat rehellisesti ottaen
+kankeita. Tämä ei haittaa, jos taulukko generoidaan automaattisesti jollain 
+tilasto-ohjelmalla.
+\end{flushleft}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: omat määritelmät}
+Määrittelemme todistuksia varten ympäristön, joka laittaa tekstin
+perään automaattisesti laatikon ($\Box$) ja kirjoittaa ''Todistus''-tekstin
+ympäristön alkuun: \bigskip
+\begin{verbatim}
+\newenvironment{todistus}
+{\makebox[2cm][l]{\textbf{Todistus.\ }}}
+{\hfill $\Box$}
+\end{verbatim}
+\end{slide}
+
+\begin{slide}{Ympäristöt\dots}
+{\small
+\begin{verbatim}
+\begin{todistus}
+Olkoon $\epsilon > 0$ valittu,\dots
+\end{todistus}
+\end{verbatim}\bigskip
+
+\newenvironment{todistus}
+{\makebox[2cm][l]{\textbf{Todistus.\ }}}
+{\hfill $\Box$}
+
+\begin{todistus}
+Olkoon $\epsilon > 0$ valittu, \dots
+\end{todistus}
+}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt\dots}
+Yleinen komento on 
+\begin{verbatim}
+\newenvironment{name}[args]{begdef}{enddef}  
+\end{verbatim}
+tai
+\begin{verbatim}
+\renewenvironment{name}[args]{begdef}{enddef}
+\end{verbatim}
+jos määrittelemme uudelleen jonkin jo olemassa
+olevan ympäristön.
+\end{slide}
+
+
+\begin{slide}{Ympäristöt\dots}
+Lauseiden määrittelyyn on oma komentokin:
+\begin{verbatim}
+\newtheorem{lause}{Lause}[laskuri]
+\end{verbatim}
+esimerkiksi
+\begin{verbatim}
+\newtheorem{lause}{Lausahdus}[slide]
+
+\begin{lause}[Ahmatin jäännöslause]
+Älä jätä huomiseksi sitä, minkä voit 
+syödä tänään.
+\end{lause}
+\begin{lause}[Ahmatin toinen jäännöslause]
+Elämä lyhyt, patonki pitkä.
+\end{lause}
+\end{verbatim}
+\end{slide}
+
+\begin{slide}{Ympäristöt\dots}
+\newtheorem{lause}{Lausahdus}[slide]
+\begin{lause}[Ahmatin jäännöslause]
+Älä jätä huomiseksi sitä, minkä voit 
+syödä tänään.
+\end{lause}
+\begin{lause}[Ahmatin toinen jäännöslause]
+Elämä lyhyt, patonki pitkä.
+\end{lause}\bigskip
+
+Katsotaan vielä komentoa
+\begin{verbatim}
+\newtheorem{lause}{Lausahdus}[slide]
+\end{verbatim}
+missä vertailulaskuriksi oli laitettu \texttt{slide}.
+Näin jokaisella kalvolla oleva lause numeroidaan
+\begin{center} 
+(kalvonumero,lausenumero) 
+\end{center}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt\dots}
+Kolmas lauseemme numeroksi tulee siis\bigskip
+
+\begin{lause}[Fubini]
+Olkoon $f$ mitallinen funktio ja \dots, silloin 
+\[ \int_A \int_B f d\mu = \int_B \int_A f d\mu. \]
+\end{lause}
+
+\begin{flushleft}
+(Tämä oli esimerkki, ei suositus lauseiden numeroimiseen
+kalvoesityksessä!)
+\end{flushleft}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt\dots}
+Päälaskuria ei ole pakko käyttää:
+\begin{verbatim}
+\newtheorem{huomautus}{Huomautus}
+\begin{huomautus}
+Huom\dots
+\end{huomautus}
+\end{verbatim}\bigskip
+
+\newtheorem{huomautus}{Huomautus}
+\begin{huomautus}
+Huomautukset menettävät tehonsa, jos suurin osa tekstistä
+on huomautuksissa, tai huomatukset ovat itsestään selviä.
+\end{huomautus}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt\dots}
+\begin{huomautus}
+Numerointia alkaa ensimmäisestä huomautuksesta
+eikä nollaannu missään vaiheessa.
+\end{huomautus}\bigskip
+
+\begin{huomautus}
+(Triviaa) \LaTeX issa on paljon laskureita ja niihin voi
+viitata komennolla \verb|\the<laskurin_nimi>|:
+\begin{verbatim}
+Olemme kalvolla \theslide.
+\end{verbatim}
+Olemme kalvolla \theslide.
+\end{huomautus}
+\end{slide}
+
+
+\begin{slide}{Ympäristöt\dots}
+Tekstiä on hankala lukea, jos lauseiden, lemmojen ja huomautusten
+laskurit kulkevat epäloogisesti toisiinsa nähden. Kannattaakin määritellä
+vain yksi laskuri ja määrätä muut ympäristöt noudattamaan sitä:\bigskip
+
+\begin{verbatim}
+\newtheorem{lemma}[lause]{Lemma}
+\end{verbatim}
+\hspace*{5cm}$\uparrow \uparrow \uparrow \uparrow \uparrow$
+\end{slide}
+
+
+
+\begin{slide}{Ympäristöt\dots}
+Tällä numeroinnilla saadaan lukijaa 
+miellyttävä tulos:
+\begin{lause}
+Jokaiselle neliömatriisille $A \in \mathbb{R}^{n\times n}$ pätee
+\[ A \operatorname{adj}(A) = I \det(A). \]
+\end{lause}
+
+\newtheorem{lemma}[lause]{Lemma}
+\begin{lemma}
+Gammafunktiolle pätee 
+\[ \Gamma(n+1) = n\Gamma(n)\quad \text{sekä} \quad 
+   \Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}. \]
+\end{lemma} 
+\end{slide}
+
+
+\begin{slide}{Ympäristöt: kertaus}
+Muista komennot
+\begin{itemize}
+\item \verb|\newcommand| ja
+\item \verb|\newtheorem|.
+\end{itemize}
+Kaikki muut yksityiskohdat löydät nopeasti
+ohjekirjoista, online-helpistä ( vaikka \\
+\url{http://www.giss.nasa.gov/latex/}, \\
+jos et muualta löydä) tai laittamalla 
+Googleen sopivan hakusanan.
+\end{slide}
+
+
+\begin{slide}{Komennot}
+{\small
+Joskus halutaan vain yksinkertainen komento, esimerkiksi
+\verb|\varoitus{teksti}|. Määritellään
+\begin{verbatim}
+\newcommand{\varoitus}[1]{%
+\begin{center}
+\Large
+\shadowbox{
+\textbf{
+\fontfamily{pag}\selectfont #1}}
+\end{center}
+}
+\end{verbatim}
+}
+\end{slide}
+
+
+\begin{slide}{Komennot\dots}
+\newcommand{\varoitus}[1]{%
+\begin{center}
+\Large
+\shadowbox{
+\textbf{
+\fontfamily{pag}\selectfont #1}}
+\end{center}
+}
+jolloin komennon
+\begin{verbatim}
+\varoitus{ortogonaalit $\neq$ ortonormaalit!}
+\end{verbatim}\bigskip
+tulokseksi saadaan
+
+\varoitus{ortogonaalit $\neq$ ortonormaalit!}
+\end{slide}
+
+
+\begin{slide}{Huomioita edelliseen}
+\begin{itemize}
+\item \verb|\shadowbox{}| saadaan käyttöön paketista 
+\texttt{fancybox}. Vastaavia enemmän ja vähemmän hyödyllisiä
+paketteja on pilvin pimein --- älä keksi pyörää uudelleen. Katso 
+ensi CTANista (Comprehensive TeX Archive Network).
+\item jotta voimme määritellä loogisia komentoja \LaTeX in
+omien lisäksi, pitää opetella hieman typografisia komentoja.
+\end{itemize}
+\end{slide}
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,374 @@
+% Beamer's default font size is 11 points. It is possible to set the
+% default font size to any of 8, 9, 10, 11, 12, 14, 17, 20
+\documentclass[13pt]{beamer}
+
+\usetheme{Warsaw}
+%\usecolortheme{dolphin}
+\usecolortheme{seahorse}
+%\useinnertheme{circles}
+\usefonttheme{professionalfonts}
+%\usefonttheme{structurebold}
+%\usefonttheme{default}
+
+\setbeamertemplate{navigation symbols}{}
+ 
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{fancybox}
+
+% These things can change:
+\newcommand{\baseurl}{http://cell.vtt.fi/latex}
+\urlstyle{sf}
+\newcommand{\plus}{\makebox[2em]{+}}
+\newcommand{\minus}{\makebox[2em]{-}}
+\newcommand{\gray}[1]{%
+\textcolor{gray}{#1}
+}
+
+% In beamer, defining new commands inside the slides fails.
+% Definitions here:
+
+\begin{document}
+
+\logo{\includegraphics[width=1.4cm]{img/vttplain}\quad}
+\title{\scalebox{1.5}{\textrm{\LaTeX}} Course 2011}
+\subtitle{Part 3: Typographical commands}
+\author{Arho Virkki}
+\institute{\textsc{VTT Technical Research Centre of Finland}}
+\date{\scalebox{0.8}{\textcolor{gray}{}}}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Elements}
+The non-textual elements, including
+\begin{itemize}
+\item boxes (\verb|\makebox, \framebox ...|)
+\item lines (\verb|\rule |)
+\item distances (\verb|\hspace, \hspace*, \vspace, ...|)
+\item \ldots
+\end{itemize}
+are described with commands inside the document.\medskip
+
+Their arguments are given in millimeters, centimeters, pixels, or in proportion
+of the font 'M' or 'x' characters,
+\begin{center}
+10mm, 1.5cm, 12px, 1em, 0.8ex, \ldots
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Examples}
+Let us inspect some of the most common commands:
+
+\begin{itemize}
+\item \verb|\rule[voffset]{width}{height}| \\ 
+  e.g.:  \verb|Baseline text\rule[-5pt]{2cm}{1ex}|: \\
+  Baseline text\rule[-5pt]{2cm}{1ex}.\bigskip
+\item \verb|\framebox[width][pos]{text}| \\
+  e.g.: \verb|\framebox[9cm][s]{foo  bar baz}|:\\
+  \framebox[9cm][s]{foo bar baz}\\\medskip
+  where s=stretch.The other options are l=left and r=right
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Examples\dots}
+\begin{itemize}
+\item \verb|\makebox[width][pos]{text}| \\
+  is the same as \verb|framebox|, but with no borders
+\item \verb|\fbox{text}|\\
+  is a short form: \verb|\fbox{Inspect this!}| \\
+  \fbox{Inspect this!}
+\item \verb|\mbox{text}|\\
+  The invisible box \verb|\mbox{the contents}| \\ $\mapsto$
+  \mbox{the contents} is treated as a single entity. This property is useful,
+  and will be needed many times in the future\ldots
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Examples\dots}
+\begin{itemize}
+\item \verb|\vspace*{height} ja \hspace*{width}| \\
+  \verb|\hspace*{0.3\textwidth}|\hspace*{0.3\textwidth} adds  
+  certain amount of space to the documents\footnote{Observe the relative
+  distance measure \texttt{\textbackslash textwidth}}\footnote{Footnotes can be
+  produces with \texttt{\textbackslash footnote}\ldots}. Vertical space can be
+  added with \verb|\vspace|. {\footnotesize\gray{(Negative distances
+  move the following contents to the left or up. The command with star is 
+  enforcing, otherwise adding the space
+  is optional, and will be omitted at certain places, e.g. at the end of 
+  paragraph)}}
+\item \verb|\parbox[pos][height][ipos]{width}{text}| \\
+  produces a box. For example, \\{\small
+  \verb|The \fbox{\parbox[b][1cm][b]{4cm}{Schrödinger's cat}}|
+  The \fbox{\parbox[b][1cm][b]{4cm}{Schrödinger's cat}}}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Examples\dots}
+\begin{itemize}
+\item \verb|pos| can be t=top (line) or b=bottom (line)
+\item \verb|ipos| can be t=top, b=bottom, c=centered or
+  s=stretched
+\item \verb|parbox| behaves like a small embedded
+page\footnote{\texttt{\textbackslash minipage} will behave exactly like an
+embedded page\ldots}, end it is treated as a single element.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Examples\dots}
+\begin{verbatim}
+  \fbox{\parbox[t][3cm][t]{6cm}{%
+      \includegraphics[width=1.6cm]
+      {img/vttplain} \dotfill {\Huge $\Lambda$} \\
+      \hspace*{1cm}\rotatebox{45}{%
+        $\scriptstyle\begin{pmatrix} 
+          a & b \\ c & d \end{pmatrix}$}}
+  }
+\end{verbatim}
+\begin{center}
+  \fbox{\parbox[t][3cm][t]{6cm}{%
+      \includegraphics[width=1.6cm]
+      {img/vttplain} \dotfill {\Huge $\Lambda$} \\
+      \hspace*{1cm}\rotatebox{45}{%
+        $\scriptstyle\begin{pmatrix} 
+          a & b \\ c & d \end{pmatrix}$}}
+  }
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Examples\dots}
+What just happened?
+\begin{itemize}
+\item \verb|\fbox| included borders to the box \gray{(in contrast to mbox)}
+\item \verb|\includegraphics| included the image \gray{(as pdf or png)}
+\item \verb|\dotfill| fills the area with dots 
+\item \verb|\hspace*| moved the <<pencil<< horizontally
+\end{itemize}\bigskip
+
+The following shows the same example with all elements having a box around 
+them.
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Examples\dots}
+Now we see what happens
+\begin{center}
+  \fbox{\parbox[t][3cm][t]{6cm}{%
+      \fbox{\includegraphics[width=1cm]
+        {img/vttplain}} \dotfill {\Huge \fbox{$\Lambda$}} \\
+      \hspace*{1cm}\rotatebox{45}{\fbox{%
+          $\scriptstyle\begin{pmatrix} 
+            a & b \\ c & d \end{pmatrix}$}}
+    }}
+\end{center}\bigskip
+The only difference is that the borders take some space, which makes a small
+difference in the image.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Conclusions}
+We saw that \LaTeX{} code becomes complicated, if we
+construct detailed elements. 
+
+Because of this reason, the logical content of the document and fiddling with
+the details should be kept \textbf{separated}.
+
+In summary,
+\begin{itemize}
+\item everything can be tuned,
+\item it is not wise to tune everything, 
+\end{itemize}
+\begin{flushleft}
+but from experience I suppose that you would like to change the default font
+sooner or later\ldots
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Fonts}
+The easiest way to get started with different document styles is to load a
+pre-defined style package \gray{(from a \texttt{.sty} file)} in the manuscript
+preamble:\smallskip
+\begin{verbatim}
+\usepackage{mystyle}
+\end{verbatim}\smallskip
+\begin{flushleft}
+where the style is possibly one from the list \texttt{helvet, palatino,
+avant, charter, bookman, newcent} or \texttt{times} \gray{(that are probably
+already installed in your LaTeX-distribution package).}
+\medskip
+
+The size of the font can be changed with the descriptive commands
+\verb|{\large  }| and \verb|{\small  }|.
+\end{flushleft} 
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Fonts\dots}
+\vspace*{-0.5cm}
+\begin{tabular}{ll}
+\verb|{\tiny Rabbit}| & {\tiny Rabbit} \\
+\verb|{\scriptsize Rabbit}| & {\scriptsize Rabbit}  \\
+\verb|{\footnotesize Rabbit}| & {\footnotesize Rabbit} \\ 
+\verb|{\small Rabbit}| & {\small Rabbit}  \\ 
+\verb|{\normalsize Rabbit}| & {\normalsize Rabbit}  \\
+\verb|{\large Rabbit}| & {\large Rabbit} \\
+\verb|{\Large Rabbit}| & {\Large Rabbit} \\
+\verb|{\LARGE Rabbit}| & {\LARGE Rabbit} \\
+\verb|{\huge Rabbit}| & {\huge Rabbit} \\
+\verb|{\Huge Rabbit}| & {\Huge Rabbit} 
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Fonts\dots}
+Observations
+\begin{itemize}
+\item These commands are declarations, not functions: \verb|\large| = change to
+large font and keep in until the end of this (scope or) environment.
+\item Anything between the \verb|\begin{}| \dots \verb|\end{}|
+-block is an environment. A new environment can also be defined with the curly
+braces \{ \dots \}.
+\item Use the curly braces and think of the environments. This is better style
+(from the programmer's point of view) than scattering the document with commands
+like \verb|\normalsize| without a clear reference to the beginning of the
+``non-normal'' behaviour.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Fonts\dots}
+I admit that even the last one \verb|\Huge| was not \textsl{that} large:\medskip
+\begin{itemize}
+\item[Q:] How to do a HUGE Rabbit?
+\item[A:] \verb|\scalebox{4}{Rabbit}|
+\end{itemize}\bigskip
+
+\begin{center}
+\scalebox{4}{Rabbit}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Fonts\dots}
+In addition, there are the ordinary functions to decorate the text\medskip
+
+\begin{tabular}{ll}
+\verb|\texttt{Rabbit}| & \texttt{Rabbit} \\
+\verb|\textit{Rabbit}| & \textit{Rabbit} \\
+\verb|\textbf{Rabbit}| & \textbf{Rabbit} \\
+\verb|\textsl{Rabbit}| & \textsl{Rabbit} \\
+\verb|\textsc{Rabbit}| & \textsc{Rabbit} \\
+\verb|\underline{Rabbit}| & \underline{Rabbit} \\
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Fonts\dots}
+These commands suffice well for a sophisticated writer.\medskip
+
+More fonts can be found from the \LaTeX-distributions by searching the
+\texttt{.fd} (font definition) files. For example,  
+\texttt{t1pbk.fd} (T1 encoded postscript Bookman font definition)
+can be selected with the definition
+\begin{verbatim}
+\fontfamily{pbk}\selectfont
+This is Bookman Font
+\end{verbatim}
+{\fontfamily{pbk}\selectfont
+This is bookman Font}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Fonts\dots}
+If you really need to change the font all the time \gray{(which is, in general,
+a bad idea)}, it may be advantageous to define a custom command  in the
+beginning of the document :\medskip
+\begin{verbatim}
+\newcommand{\avantgar}[1]{
+{\fontfamily{pag}\selectfont #1}}
+\end{verbatim}\medskip
+etc\ldots
+{\footnotesize
+\begin{verbatim}
+\newcommand{\bookman}[1]{{\fontfamily{pbk}\selectfont #1}}
+\newcommand{\courier}[1]{{\fontfamily{pcr}\selectfont #1}}
+\newcommand{\cmodern}[1]{{\fontfamily{cmr}\selectfont #1}}
+\newcommand{\helvetic}[1]{{\fontfamily{phv}\selectfont #1}}
+\newcommand{\newcent}[1]{{\fontfamily{pnc}\selectfont #1}}
+\newcommand{\tmroman}[1]{{\fontfamily{ptm}\selectfont #1}}
+\newcommand{\script}[1]{{\fontfamily{pzc}\selectfont #1}}
+\end{verbatim}}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Fonts\dots}
+Now we have defined a couple of commands that fit the \LaTeX{}
+philosophy.\medskip
+
+\newcommand{\avantgar}[1]{{\fontfamily{pag}\selectfont #1}}
+\newcommand{\bookman}[1]{{\fontfamily{pbk}\selectfont #1}}
+\newcommand{\courier}[1]{{\fontfamily{pcr}\selectfont #1}}
+\newcommand{\cmodern}[1]{{\fontfamily{cmr}\selectfont #1}}
+\newcommand{\helvetic}[1]{{\fontfamily{phv}\selectfont #1}}
+\newcommand{\newcent}[1]{{\fontfamily{pnc}\selectfont #1}}
+\newcommand{\tmroman}[1]{{\fontfamily{ptm}\selectfont #1}}
+\newcommand{\script}[1]{{\fontfamily{pzc}\selectfont #1}}
+
+\begin{tabular}{ll}
+\verb|\avantgar{Rabbit}| & \avantgar{Rabbit} \\
+\verb|\bookman{Rabbit}| & \bookman{Rabbit} \\
+\verb|\courier{Rabbit}| & \courier{Rabbit} \\
+\verb|\cmodern{Rabbit}| & \cmodern{Rabbit} \\
+\verb|\helvetic{Rabbit}| & \helvetic{Rabbit} \\
+\verb|\tmroman{Rabbit}| & \tmroman{Rabbit} \\
+%\verb|\utopia{Rabbit}| & \utopia{Rabbit} \\
+\verb|\script{Rabbit}| & \script{Rabbit} \\
+\end{tabular}\bigskip
+
+\gray{\small
+These commands are not included by default, because they will most likely ruin
+your (technical or scientific) document. For the purposes you would be using
+them, some of the office packages might be a better option.} 
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Conclusions\dots}
+A good strategy for writing a paper with \LaTeX{} is to \medskip
+
+\begin{itemize}
+\item Make the title page by hand (e.g. by using the command just learned) 
+\item Write the text with clean \LaTeX, using perhaps some of the extension
+packages from AMS (American Mathematical Society) to stick with portability.
+\item Make your own style sheet, if necessary
+\item Include minor things in the document preamble before the
+  \verb|\begin{document}| clause \gray{(even though it is sometimes legal to
+  define command later in the document --- but what is the
+  advantage?)}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Conclusions\dots}
+\begin{itemize}
+\item \LaTeX{} and plain \TeX{} spaghetti mixed with the text
+is a nightmare to maintain. \gray{Recall the experiences from HTML 3.2 before
+properly working CSS.}
+\item \LaTeX{} is a large software with a very long history (starting from
+1978). Knowing the basics suffices well.
+\end{itemize}
+\end{frame}
+
+
+
+\end{document}
+

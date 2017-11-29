@@ -1,0 +1,200 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lc2005}[2004/11/26 v1.0 UTU LaTeX 2004 Course Style File]
+\RequirePackage{ifthen}
+
+% The idea is to declare the most persisting customizations here -- 
+% not on the main .tex document. Moreover, some setting are possible only
+% in style files, notably those that modify sectioning.
+
+% The option you can set are:
+% 
+%    center
+%    leftmargin
+%    rightmargin
+%    largemath10
+%    indent
+%    noindent
+%    nodecorations
+
+
+% Should we indent the section, subsection, etc. texts.
+% the default is 'indent'
+\newlength{\AP@SectionIndent}
+
+\DeclareOption{indent}{
+  \setlength{\AP@SectionIndent}{-16pt}
+}
+
+\DeclareOption{noindent}{
+  \setlength{\AP@SectionIndent}{0pt}
+}
+
+% The default fontset New Century looks better with a bit enlargened set of
+% mathematical fonts.
+\DeclareOption{largemath10}{
+  \DeclareMathSizes{10}   {10.95}{8}    {6}
+}
+
+\DeclareOption{center}{
+  \addtolength{\textwidth}{2.0cm}
+  \addtolength{\hoffset}{-1.0cm}
+}
+
+\DeclareOption{leftmargin}{
+  \addtolength{\textwidth}{1.0cm}
+  \addtolength{\hoffset}{1.0cm}  
+  \addtolength{\marginparwidth}{1cm}
+  \reversemarginpar
+}
+
+\DeclareOption{rightmargin}{
+  \addtolength{\textwidth}{1.0cm}
+  \addtolength{\hoffset}{-1.5cm}  
+  \addtolength{\marginparwidth}{1cm}
+}
+
+% The sectionin command will be redefined:
+\renewcommand\section{%
+  \vspace{12pt}                
+  \rule{1\textwidth}{0.25ex}
+  \vspace*{-21pt} \\
+  \rule{0.25\textwidth}{0.7ex}
+  \vspace*{-12pt}              
+  \@startsection{section}{1}{\AP@SectionIndent}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}%
+  {\normalfont\Large\bookman\scshape}%
+}
+
+\renewcommand\subsection{%
+  \@startsection{subsection}{2}{\AP@SectionIndent}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}%
+  {\normalfont\large\bookman\scshape}%
+}
+
+\renewcommand\subsubsection{%
+  \@startsection{subsubsection}{3}{\AP@SectionIndent}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}%
+  {\normalfont\normalsize\bookman\slshape}%
+}
+
+\renewcommand\paragraph{%
+  \@startsection{paragraph}{4}{\AP@SectionIndent}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}%
+  {\normalfont\normalsize\bookman}%
+}
+
+\renewcommand\subparagraph{%
+  \@startsection{subparagraph}{5}{\AP@SectionIndent}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}%
+  {\normalfont\normalsize\bookman\slshape}%
+}
+
+% Sometimes, and especially if \linespread{x} is set to something other that
+% unity, we do not want to see the decoration lines over each section
+
+\DeclareOption{nodecorations}{
+  \renewcommand\section{%
+    \@startsection{section}{1}{\AP@SectionIndent}%
+    {-3.5ex \@plus -1ex \@minus -.2ex}%
+    {2.3ex \@plus.2ex}%
+    {\normalfont\Large\bookman\scshape}%
+  }
+}
+
+% Default options are processed.
+\ExecuteOptions{center,indent} 
+
+% Given options are processed, (possibly) overriding the defaults.
+\ProcessOptions
+
+
+
+% The basic style the document is based on. This can be overriden
+% in the document with 'usepackage{<anotherpkg>}'--command. The most
+% notable another packages are: helvet, palatino, avantgar, charter, pifont, 
+% avant, times, bookman, helvetic, palatcm, utopia, concrete, and newcent.
+\RequirePackage{newcent}
+
+% The basic AMS-packages are always needed:
+% \RequirePackage{mathrsfs,amsfonts,amsmath,amssymb,amsthm}
+% but turned off by default, since Maxima-generated TeX doesn't work
+% with these.
+
+% The scaling package is less used, but it maybe some day..
+% Usage: \scaletowidth{3cm}{<text>}
+% \RequirePackage{textfit}      
+
+% This changes array environment so that it suits better 
+% to matrix manipulation.
+\RequirePackage{delarray}
+
+% Marginals and text width
+% (Suomen kielessä kappaleen ensimmäistä riviä ei sisennetä).
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5ex plus 0.5ex minus 0.5ex}
+%\pagestyle{myheadings} \markright{<whatever>}
+\addtolength{\textheight}{2cm}
+\addtolength{\voffset}{-1cm}
+%\linespread{1.5}
+%\sloppy
+
+% Postscript-fonts.
+% One can find the the istalled fonts for example by chasing
+% *.fd files (font definitions). One example is t1pag.df, if
+% T1 encoding is used. 
+% Example: {\bookman <your text here>}
+\newcommand{\avantgar}{\fontfamily{pag}\selectfont}
+\newcommand{\bookman}{\fontfamily{pbk}\selectfont}
+\newcommand{\courier}{\fontfamily{pcr}\selectfont}
+\newcommand{\cmodern}{\fontfamily{cmr}\selectfont}
+\newcommand{\helvetic}{\fontfamily{phv}\selectfont}
+\newcommand{\newcent}{\fontfamily{pnc}\selectfont}
+\newcommand{\tmroman}{\fontfamily{ptm}\selectfont}
+\newcommand{\utopia}{\fontfamily{put}\selectfont}
+\newcommand{\script}{\fontfamily{pzc}\selectfont}
+
+% The section numbering should contain all the 5 first.
+\setcounter{secnumdepth}{5}
+
+% But only 4 first will be listed in table of contents
+\setcounter{tocdepth}{4}
+
+% Some command to place graphics around in a normal document
+\newcounter{fig_counter}[section]
+%
+% This picture goes to marginal
+\newcommand{\mfig}[3][0.9]{
+\marginpar{ \small
+%\rule{\marginparwidth}{0.2ex} 
+\parbox{\marginparwidth}{\hfill
+\includegraphics[width=#1\marginparwidth]{#2} 
+\hfill \rule{0pt}{0pt}}
+\rule{0pt}{4pt}\\
+\refstepcounter{fig_counter}
+\textit{Kuva~\arabic{fig_counter}} 
+\hrulefill
+\vspace{1ex}
+\newline \raggedright
+#3}}
+%
+
+% Margin notes
+\newcommand{\mnote}[1]{\marginpar{ \raggedright \small #1 }}
+
+% A possibility to box parts of text
+\newlength{\boxedtextwidth}
+\newcommand{\important}[1]{
+  \setlength{\boxedtextwidth}{\textwidth}
+  \addtolength{\boxedtextwidth}{-2\fboxsep}
+  \addtolength{\boxedtextwidth}{-2\fboxrule}
+  \fbox{%
+    \begin{minipage}{\boxedtextwidth}
+      #1
+\end{minipage}}}
+
+% EOF

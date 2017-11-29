@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Siivotaan..."
+rm -f *.aux *.log *.out *.dvi *.bbl *.blg *~ *\#
+

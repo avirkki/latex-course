@@ -1,0 +1,199 @@
+% Beamer's default font size is 11 points. It is possible to set the
+% default font size to any of 8, 9, 10, 11, 12, 14, 17, 20
+\documentclass[13pt]{beamer}
+
+\usetheme{Warsaw}
+%\usecolortheme{dolphin}
+\usecolortheme{seahorse}
+%\useinnertheme{circles}
+\usefonttheme{professionalfonts}
+%\usefonttheme{structurebold}
+%\usefonttheme{default}
+
+\setbeamertemplate{navigation symbols}{}
+ 
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+% These things can change:
+\newcommand{\baseurl}{http://cell.vtt.fi/latex}
+\urlstyle{sf}
+\newcommand{\plus}{\makebox[2em]{+}}
+\newcommand{\minus}{\makebox[2em]{-}}
+
+
+\begin{document}
+
+\logo{\includegraphics[width=1.4cm]{img/vttplain}\quad}
+\title{\scalebox{1.5}{\textrm{\LaTeX}} Course 2011}
+\subtitle{$\mathcal{F}$rom \scalebox{1.2}{$\beta$}asics to
+\scalebox{1.2}{$\alpha$}dvanced
+\scalebox{1.2}{$\tau$}ypesetting}
+\author{Arho Virkki}
+\institute{\textsc{VTT Technical Research Centre of Finland}}
+\date{\scalebox{0.8}{\textcolor{gray}{2011-10-04}}}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}\frametitle{About the Course}
+\begin{block}{Course Page:}
+\url{\baseurl}
+\end{block}\bigskip
+
+Suggested preliminary knowledge:\smallskip
+
+\framebox[5em][l]{\textbf{original:}} 
+\url{http://tobi.oetiker.ch/lshort/lshort.pdf}\\
+\framebox[5em][l]{\textbf{copy:}} \url{\baseurl/extras/lshort.pdf}\bigskip
+
+Suomeksi:\smallskip
+
+\hspace*{-1em}\framebox[4em][l]{\textbf{alkup.:}}
+\url{http://www.tex.ac.uk/CTAN/info/lshort/finnish/lyhyt2e.pdf}\\
+\hspace*{-1em}\framebox[4em][l]{\textbf{kopio:}}
+\url{\baseurl/extras/lyhyt2e.pdf} \bigskip
+
+\end{frame}
+
+
+\begin{frame}\frametitle{About the Course\dots}
+Suggested book: \\
+\textbf{Helmut Kopka and Patrick W. Daly, Guide to LaTeX,
+4th edition.} \\
+In my opinion, the book is very thoroughly written and works 
+perfectly as a reference.\bigskip
+
+Other suggested books: \\
+\textbf{The LaTeX Companion, The LaTeX Web Companion, The LaTeX Graphics
+Companion} \\
+These are the fundamental and also the most often cited books. Their only
+disadvantage is that there are even more pages to read through. 
+\end{frame}
+
+
+\begin{frame}\frametitle{About the Course\dots}
+There appears not to be both a \textbf{complete} and a \textbf{concise}
+electronic reference to the system. In contrast, the amount of documentation
+is huge, and most of it is more or less
+outdated.\bigskip
+
+$\to$ The book is a valuable investment.\bigskip
+
+Some of the electronic references are rather complete: teTeX 
+hypertext help is rather complete, and the TeXlipse plug-in for Eclipse knows
+quite the well the basic commands.
+\end{frame}
+
+\begin{frame}\frametitle{About the Course\dots}
+Most of the texts in natural sciences are written with \LaTeX{} 
+nowadays.\bigskip
+
+\LaTeX{} is actually part of the scientific heritage, including the
+other open sourced tools like Linux, PostgreSQL, the BSD-system, Apache,
+etc. 
+\bigskip
+
+\emph{Keywords:} markup languages, GNU and open source.
+\end{frame}
+
+
+\begin{frame}\frametitle{What is \LaTeX{}?}
+\LaTeX{}, or precisely \LaTeXe{}, is a typesetting system for structured
+documents, including
+
+\begin{itemize}
+  \item books
+  \item scientific papers
+  \item handouts
+  \item research reports
+  \item slides --- like now.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{What is \LaTeX{}?\dots}
+The document format is structured, which means that there are
+\begin{itemize}
+  \item logical and (preferably only few) %(\verb|\begin{document}|) ja
+  \item typographical %(\verb|\textbf{lihavoituna}|)
+\end{itemize}
+commands mixed with the manuscript text\footnote{The manuscript  has the role
+of ``source code'' in this context.}.\bigskip
+
+The text-formatted source can be compiled into
+different formats, the most common being
+\begin{itemize}
+  \item PDF (Portable Document Format) and
+  \item HTML (HyperText Markup Language).
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{This course is for you, if you\ldots}
+
+This course is for you, if you\ldots
+\begin{itemize}
+  \item compose books,
+  \item publish in natural sciences,
+  \item compose mathematical texts,
+  \item generate (pdf) documents automatically from software,
+  \item just like software that (just) works, or
+  \item just like free / open source software.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Course contents}
+
+Course contents
+\begin{enumerate}
+  \item short introduction
+  \item logical constructs: lists, environments,\dots
+  \item typographical building blocs: lines, boxes, fonts,\ldots
+  \item mathematical typesetting: 
+  $\displaystyle\oint_C \frac{3\pi}{\sqrt[n]{\frac{z-1}{z+1}}}\, \mathrm{dz}$,
+  \dots
+  \item graphics: adding and drawing images,\dots
+  \item other tools: BibTeX for references, drawing images,\dots
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}\frametitle{Course contents}
+\begin{center}
+\scalebox{3}{\textcolor{gray}{Welcome}}
+\rotatebox{-45}{\scalebox{2}{\textsl{to}}}
+\rotatebox{45}{\scalebox{2}{\textrm{the}}}
+\raisebox{1em}{\rotatebox{-180}{\scalebox{2}{\textsc{Course!}}}}%
+\scalebox{2}{\textsc{!}}
+
+\begin{displaymath}
+X\beta = y + \epsilon \quad \Leftrightarrow \quad
+\begin{bmatrix}
+1 & x_{11} &  \cdots & x_{1M} \\
+1 & x_{21} &  \cdots & x_{1M} \\
+\vdots &  &  & \vdots \\
+\\
+\vdots &  &  & \vdots \\
+1 & x_{N1} & \cdots & x_{NM} \\
+\end{bmatrix}
+\raisebox{1.5em}{$\begin{bmatrix}
+\beta_0 \\ \beta_1 \\ \vdots \\ \beta_M 
+\end{bmatrix}$} = 
+\begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ \\ \vdots \\ y_N 
+\end{bmatrix} + 
+\begin{bmatrix}
+\epsilon_1 \\ \epsilon_2 \\ \vdots \\ \\ \vdots \\ \epsilon_N 
+\end{bmatrix}
+\end{displaymath}
+\end{center}
+\end{frame}
+
+
+\end{document}

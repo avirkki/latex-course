@@ -1,0 +1,16 @@
+\frametitle{Beamer example...}
+\normalsize
+These slides are actually bad. Good slides have as little text as
+possible, and\medskip
+\begin{itemize}
+\bfseries
+\item the text is large enough and it
+\item has lots of free space around it.
+\end{itemize}\bigskip
+
+In addition,\medskip
+\begin{itemize}
+\sl
+\item each slide contains at most 4 key elements, and
+\item the audience is not expected to read and listen at the same time.
+\end{itemize}

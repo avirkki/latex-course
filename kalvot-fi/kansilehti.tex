@@ -1,0 +1,99 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage[finnish]{babel}
+\usepackage[usenames]{color}
+
+% Levennetään tekstiä ja korjataan kappale keskelle:
+\addtolength{\textwidth}{2.0cm}
+\addtolength{\hoffset}{-1.0cm}
+% Sama suurennus pystysuuntaan:
+\addtolength{\textheight}{2cm}
+\addtolength{\voffset}{-1cm}
+% Suomenkielessä ei sisennetä kappaleen alkua
+\setlength{\parindent}{0pt}
+
+% Määritellään hieman fontteja, joilla om mukava leikkiä:
+\newcommand{\bookman}[1]{{\fontfamily{pbk}\selectfont #1}}
+\newcommand{\courier}[1]{{\fontfamily{pcr}\selectfont #1}}
+\newcommand{\cmodern}[1]{{\fontfamily{cmr}\selectfont #1}}
+\newcommand{\helvetic}[1]{{\fontfamily{phv}\selectfont #1}}
+\newcommand{\newcent}[1]{{\fontfamily{pnc}\selectfont #1}}
+\newcommand{\tmroman}[1]{{\fontfamily{ptm}\selectfont #1}}
+\newcommand{\script}[1]{{\fontfamily{pzc}\selectfont #1}} 
+ 
+
+
+\begin{document}
+
+% Ei sivunumerointia tälle sivulle ja lisäksi 
+% numerointi aloitetaan vasta seuraavasta sivusta
+\thispagestyle{empty}
+\addtocounter{page}{-1}
+
+\hspace*{-2.5cm}\includegraphics[height=2cm]{soihtu}
+\vspace*{-1.6cm}
+
+\begin{minipage}[t]{0.8\textwidth}
+\begin{flushleft}
+\tmroman{\large
+UNIVERSITY OF TURKU \\
+Department of Mathematics
+}
+
+\vspace*{8cm}
+
+{\scshape\Large
+Ewert Kupiainen\\[1.5em] 
+
+Rengasteoriaa separoituvissa kenkäavaruuksissa ja 
+polynomiaalisen yhtäköryhmän ratkaisemisesta  \\[2em]
+
+Pro Gradu}
+\end{flushleft}
+
+\vspace*{7cm}
+
+\textsl{
+\begin{tabbing}
+\hspace{4.5cm}   \= Aihe hyväksytty laitosneuvoston kokouksessa 5.2.2006 \\
+\> Tarkastajat:  \= Prof.\ N.N (Turun yliopisto) \\
+              \> \> Prof.\ M.M.  (Kuopion yliopisto)
+\end{tabbing}}
+\end{minipage}
+
+% Tämä kommentoidaan pois, kun gradu on valmis
+\vspace*{-22cm} \hspace*{7cm}
+\rotatebox{-40}{\resizebox{!}{3cm}{\color{Gray}{\script Vedos}}}
+
+\newpage
+
+
+Tähän kirjoitan graduni. 
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+Tähän kirjoitan graduni.
+
+
+% tai mieluummin kirjoitat erillisiin tiedostoihin ekaosa.tex,... 
+% ja sanot tässä
+%
+%\include{ekaosa}
+%\include{tokaosa}
+%...
+%\include{loppuosa}
+
+\end{document}

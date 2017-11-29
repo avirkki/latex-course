@@ -1,0 +1,7 @@
+\parbox{0.8\textwidth}{\tiny
+\textbf{The final result in:} ``J Mattila, J Koikkalainen, A Virkki,
+M van Gils, and J Lotjonen. Design and application of a generic clinical
+decision support system for multi-scale data. Transactions on Biomedical
+Engineering, (in press), 2011''\footnote{\url{http://www.vtt.fi/aivotutkimus}}
+\frametitle{Inkacape use case: Images with equations\ldots}}
+\includegraphics[width=1\textwidth]{img/textext_publ.png}

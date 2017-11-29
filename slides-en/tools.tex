@@ -1,0 +1,327 @@
+% Beamer's default font size is 11 points. It is possible to set the
+% default font size to any of 8, 9, 10, 11, 12, 14, 17, 20
+\documentclass[13pt]{beamer}
+
+\usetheme{Warsaw}
+%\usecolortheme{dolphin}
+\usecolortheme{seahorse}
+%\useinnertheme{circles}
+\usefonttheme{professionalfonts}
+%\usefonttheme{structurebold}
+%\usefonttheme{default}
+
+\setbeamertemplate{navigation symbols}{}
+ 
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{fancybox}
+
+% These things can change:
+\newcommand{\baseurl}{http://cell.vtt.fi/latex}
+\urlstyle{sf}
+\newcommand{\plus}{\makebox[2em]{+}}
+\newcommand{\minus}{\makebox[2em]{-}}
+\newcommand{\gray}[1]{%
+\textcolor{gray}{#1}
+}
+
+% In beamer, defining new commands inside the slides fails.
+% Definitions here:
+
+\begin{document}
+
+\logo{\includegraphics[width=1.4cm]{img/vttplain}\quad}
+\title{\scalebox{1.5}{\textrm{\LaTeX}} Course 2011}
+\subtitle{Part 6: Companion tools}
+\author{Arho Virkki}
+\institute{\textsc{VTT Technical Research Centre of Finland}}
+\date{\scalebox{0.8}{\textcolor{gray}{}}}
+
+\begin{frame}[fragile]
+  \titlepage
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{The need for extra tools}
+As seen earlier, LaTeX is a capable system for typesetting. For productive
+work, we still need 
+\begin{itemize}
+\item citation management system,
+\item advanced drawing tools, 
+\item perhaps some more exotic LaTeX add-on packages, and
+\item a proper version control system (e.g. cvs, svn or 
+git)\footnote{These tools are not discussed in this course. Nevertheless, LaTeX
+users get their full power, as the manuscripts are text -- similar to software
+source code.\\\mbox{}}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{BibTeX}
+
+BibTeX is the de facto standard for LaTeX citatioin management
+(written by Oren Patashnik and Leslie Lamport in 1985). It has
+\begin{itemize}
+\item An uncomplicated structure:
+\begin{itemize}
+  \item the database can be modified by hand and
+  \item it is easy to write programs that can handle BibTeX files.
+\end{itemize}
+\item A lot of BibTeX tools already exists, including
+\begin{itemize}
+  \item \texttt{bibtool}
+  \item \texttt{bibtex2html}
+  \item \dots
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{BibTeX\dots}
+BibTeX-database is just a plain text file. Example:
+\begin{verbatim}
+@Article{gro67,
+  author  = {Fred S. Grodins and ...},
+  title   = {Mathematical analysis and ...},
+  journal = {Journal of Applied Physiology},
+  volume  = {22},
+  number  = {2},
+  pages   = {260-276},
+  year    = {1967},
+  url     = {Grodins - Maadsotrcs.pdf}
+}
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{BibTeX\dots}
+\begin{itemize}
+\item The record begins with the type, for example \verb|@article|,
+  \verb|@book| or \verb|@techreport|.
+\item The first string is the key for the citation, which can be used in the
+text as \verb|\cite{lyhenne}|.
+\item All fields are key-value pairs, like \verb|pages={260-276}|.
+\item All fields are separated by commas.
+\end{itemize}
+The format of the record is hence
+\begin{verbatim}
+@tyyppi{field, field, ..., field}
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{BibTeX\dots}
+\begin{itemize}
+\item The authors are introduced in the order \emph{first\_name last\_name} and
+\item the names are separated with keyword \texttt{and}.
+\end{itemize}
+For example, 
+\begin{verbatim}
+J. Doe and O. Normalverbraucher and 
+M. Meikalainen
+\end{verbatim}\medskip
+\begin{flushleft}
+The style of the Bibliography is defined by a separate style sheet. This can
+usually be downloaded from the home page of the journal the article is being
+submitted.
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{BibTeX\dots}
+The style sheet can e.g. define that the title begins with a capital letter, and
+all the following words are written in lower case. In this case, for example, 
+\begin{verbatim}
+Stability of the Human Respiratory 
+Control System I: Analysis of a 
+Two-Dimensional Delay State-Space Model
+\end{verbatim}
+becomes
+\begin{verbatim}
+Stability of the human respiratory 
+control system i: analysis of a 
+two-dimensional delay state-space model
+\end{verbatim}
+which was not necessarily the original intention.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{BibTeX\dots}
+If we need to fix the presentation of a word, that part of the text can be
+written inside extra curly braces \{ \}
+\begin{verbatim}
+... System {I}: {A}nalysis of a ...
+\end{verbatim}
+which makes these parts immutable.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{BibTeX and natbib}
+Using the add-on package
+\begin{verbatim}
+\usepackage{natbib}
+\end{verbatim}
+we get two additional commands in addition to the basic \verb|\cite{}|:
+\begin{itemize}
+\item \verb|\citet{}| --- the \emph{textual} and
+\item \verb|\citep{}| --- the \emph{parenthetical citation}.
+\end{itemize}
+that enable taking the citations as part of the text.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{BibTeX and natbib\dots}
+Example:
+\begin{verbatim}
+\citet{Foo88} showed that... furthermore ...
+in the last decade \citep{Bar93,Baz96}.
+\end{verbatim}
+produces
+\begin{quotation}
+\noindent
+Fooman et al. (1988) showed that... furthermore ...
+in the last decade (Barnos et al., 1993; Bazel et al., 1996).
+\end{quotation}
+depending of the chosen style.
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{BibTeX usage}
+Example: \medskip
+If BibTeX database is stored in the file \texttt{citations.bib},
+it can be cited in the text using the command \verb|\cite{key}|, provided that
+the file has been added to the list of citation files:
+\medskip
+\begin{verbatim}
+\bibliographystyle{apalike}
+\bibliography{citations}
+\end{verbatim}
+where \texttt{apalike.bst} is one of the default style sheets available.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{BibTeXin usage\dots}
+In case that the document (here \verb|text.tex|) is compiled for the first time,
+one needs to run all the commands
+\begin{verbatim}
+latex text 
+bibtex text 
+latex text 
+latex text 
+\end{verbatim}
+until all is done.
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Style sheet tricks}
+One of our very first examples had the command
+\begin{verbatim}
+@Article{gro67,
+  ...,
+  url     = {Grodins - Maadsotrcs.pdf}
+}
+\end{verbatim}
+\begin{flushleft}
+where \texttt{url} refers to the file name in the local machine. This, of
+course, has no meaning for other users, and the field is best to be removed from
+the public version of the file.
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Style sheet tricks\dots} 
+Because the \texttt{.bib} files are just ordinary text, removing a field is
+easy.\medskip
+
+Example: (\texttt{sed} = strean editor)
+\begin{verbatim}
+sed --in-place '/url/ d' citations.bib
+\end{verbatim}
+The same can also be done with a proper Python or R program.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Beamer}
+Beamer is an additional package for writing slides.
+\begin{itemize}
+\item You write ordinary \LaTeX and
+\item Prosper makes to output to look like it was produced using ``the power
+point method''.
+\item --- except for the formulas, which will still be typeset with the  
+\LaTeX quality.
+\item The style definitions of the current slide set are 
+\begin{verbatim}
+\usetheme{Warsaw}
+\usecolortheme{seahorse}
+\usefonttheme{professionalfonts}
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Beamer\ldots}
+Beamer comes installed by defauld with LiveTeX, 
+and compiling the slides (in \verb|slides.tex|) is straightforward:
+\begin{verbatim}
+pdflatex slides
+\end{verbatim}
+\begin{itemize}
+\item You had better to choose a program that automatically notices the update 
+\texttt{pdf}-file.
+\item Under linux,  \texttt{evince} automatically notices any change in the
+file. For Mac OS X, the editor usually incorporates a proper previewer.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Beamer example}
+The following commands tell LaTeX that the document is a slide set (and sets
+some extra preferences)
+\begin{verbatim}
+\documentclass[13pt]{beamer}
+\usetheme{Warsaw}
+\usecolortheme{seahorse}
+\usefonttheme{professionalfonts}
+\setbeamertemplate{navigation symbols}{}
+
+\begin{document}
+...
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Beamer example...}
+Each slide begins and ends with 
+\begin{verbatim}
+  \begin{frame}[fragile]
+  \frametitle{The slide title}
+  This goes to the slide
+  ...
+  \end{frame}
+\end{verbatim}
+The extra argument \texttt{[fragile]} is not always necessary, but it enables
+using the \texttt{verbatim} environment.\footnote{Which is heavily used e.g.
+for these slides.\\\mbox{}}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Beamer example...}
+\normalsize
+These slides are actually bad. Good slides have as little text as
+possible, and\medskip
+\begin{itemize}
+\bfseries
+\item the text is large enough and it
+\item has lots of free space around it.
+\end{itemize}\bigskip
+
+In addition,\medskip
+\begin{itemize}
+\sl
+\item each slide contains at most 4 key elements, and 
+\item the audience is not expected to read and listen at the same time.
+\end{itemize}
+\end{frame}
+
+
+\end{document}

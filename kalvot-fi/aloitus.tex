@@ -1,0 +1,155 @@
+% Hienoiksi havaittuja tyylejä:
+% rico,contemporain,darkblue,frames,blends,whitecross,corners,capsules
+%
+\documentclass[a4paper,slideColor,colorBG,pdf,corners]{prosper}
+\usepackage[latin1]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{url}
+
+
+% Nämä asiat voivat muuttua:
+\newcommand{\baseurl}{http://users.utu.fi/avirkki/latex2005/}
+\urlstyle{sf}
+\newcommand{\plus}{\makebox[1.3em]{+}}
+\newcommand{\minus}{\makebox[1.3em]{-}}
+
+
+
+
+\begin{document}
+
+\title{\LaTeX--kurssi 2005}
+\author{Arho Virkki}
+\email{arho.virkki@utu.fi}
+\institution{Turun yliopisto, matematiikan laitos}
+\slideCaption{\today}
+\Logo(10.5,-0.8){\includegraphics[width=8mm]{soihtu}}
+
+\maketitle
+
+\begin{slide}{Kurssista}
+Kurssin kotisivu: \\
+{\small\url{\baseurl}} \bigskip
+
+Esitietosuositukset: \\ 
+{\small\url{\baseurl/lshort.pdf}} \\
+tai suomeksi \\
+{\small\url{\baseurl/lyhyt2e.pdf}} \bigskip
+
+\plus vapaasti verkosta ladattava opus \\
+\minus pitkähkö
+\end{slide}
+
+
+\begin{slide}{Kurssista\dots}
+Kirja: \\
+\textbf{Helmut Kopka and Patrick W. Daly, Guide to LaTeX, 
+  4th edition.} \\
+Mielestäni paras opas, tehty saksalaisella täsmällisyydellä.\bigskip
+
+Muuta kirjallisuutta: \\
+\textbf{The LaTeX Companion, The LaTeX Web Companion, The LaTeX Graphics
+  Companion} \\
+Peruskirjat, joihin usein viitataan.\bigskip
+\end{slide}
+
+
+\begin{slide}{Kurssista\dots}
+Täydellistä sähköistä yleisopasta ei ole: dokumentteja on valtavasti ja 
+ne ovat usein vanhentuneita $\to$ kirja kannattaa ostaa.\bigskip
+
+Osassa oppaista on kyllä yritystä: teTeXin hypertext help ja 
+TeXnicCenterin LaTeX Help e-Book vaikuttavat kattavilta, joskaan eivät
+jäsennellyiltä.
+
+\end{slide}
+
+
+\begin{slide}{Kurssista\dots}
+\textbf{teTeX hypertext help}
+
+\includegraphics[width=0.6\textwidth]{tetexhelp}
+
+\end{slide}
+
+
+\begin{slide}{Kurssista\dots}
+\textbf{TeXnicCenter LaTeX Help e-Book}
+
+\includegraphics[width=0.8\textwidth]{texniccenterhelp}
+
+\end{slide}
+
+
+\begin{slide}{Kurssista\dots}
+Suurin osa matemaattisista teksteistä kirjoitetaan nykyään \LaTeX in
+avulla.\bigskip
+ 
+\emph{Matematiikan opettajankin} on hyvä tuntea \LaTeX{}: se
+on osa  kokonaisuutta, jota voisi kutsua matematiikan ja
+ohjelmistotekniikan tiedeperinnöksi.\bigskip
+
+\emph{Avainsanoja:} markup languages, GNU ja vapaa lähdekoodi 
+\end{slide}
+
+
+\begin{slide}{Mikä \LaTeX{} on?}
+\LaTeX{}, tarkemmin \LaTeXe{} on taitto-ohjelma, jolla voi tehdä
+rakenteisia dokumentteja, esimerkiksi
+
+\begin{itemize}
+\item kirjoja,
+\item opintomonisteita,
+\item tenttikysymyspapereita,
+\item Pro gradu -tutkielman tai
+\item esitysgrafiikkaa --- kuten nyt.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Mikä \LaTeX{} on?\dots}
+Rakenteisuus tarkoittaa, että käsikirjoituksessa (eli lähdekoodissa) on
+\begin{itemize}
+\item loogisia (\verb|\begin{document}|) ja 
+\item typografisia (\verb|\textbf{lihavoituna}|)
+\end{itemize}
+komentoja sekä leipätekstiä. Lähdekoodin voi kääntää eri muotoihin,
+joista yleisimmät ovat
+\begin{itemize}
+\item PDF (Portable Document Format) ja
+\item HTML (HyperText Markup Language)
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Kurssi on hyödyllinen, jos}
+\begin{itemize}
+\item kirjoitat matemaattista tekstiä tai
+\item kirjoitat monisatasivuisia tekstejä tai
+\item arvostat deterministisesti toimivia ohjelmia ja
+\item avoimen lähdekoodin ohjelmia.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Kurssin sisältö}
+\begin{enumerate}
+\item lyhyt johdatus
+\item loogiset rakenteet: luettelot, ympäristöt,\dots
+\item typografiset perusrakenteet: viivat, laatikot, kirjasimet, \dots
+\item matematiikan ladonta: $\sqrt[3]{\frac{z-1}{z+1}}$,\dots
+\item grafiikka: kuvien liittäminen ja piirto,\dots
+\item muut työkalut: BibTeX, kuvien piirtäminen,\dots
+\end{enumerate} 
+\end{slide}
+
+
+
+
+
+
+
+
+\end{document}

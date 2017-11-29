@@ -1,0 +1,407 @@
+% Hienoiksi havaittuja tyylej‰:
+% rico,contemporain,darkblue,frames,blends,whitecross,corners,capsules
+%
+\documentclass[slideColor,colorBG,pdf,corners]{prosper}
+\usepackage[latin1]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage{graphicx}
+\usepackage[usenames]{color}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{url}
+\usepackage{floatflt}
+
+
+% N‰m‰ asiat voivat muuttua:
+\newcommand{\plus}{\makebox[1.3em]{+}}
+\newcommand{\minus}{\makebox[1.3em]{-}}
+
+
+
+
+\begin{document}
+
+\title{Osa 5: Grafiikka}
+\author{}
+\Logo(10.5,-0.8){\includegraphics[width=8mm]{soihtu}}
+\maketitle
+
+\begin{slide}{Kuvien liitt‰minen}
+Kuvien liitt‰minen tekstiin tuli arkip‰iv‰iseksi vasta 
+90-luvun alussa. T‰st‰ syyst‰ \LaTeX in kuvank‰sittelykomennot
+ladataan viel‰kin erikseen:
+\begin{verbatim}
+\usepackage{graphicx}
+\usepackage{color}
+\end{verbatim}
+tai
+\begin{verbatim}
+\usepackage{graphicx,color}
+\end{verbatim}
+tai
+\begin{verbatim}
+\usepackage[dvips]{graphicx,color}
+\end{verbatim}
+jos edelliset eiv‰t toimi. 
+\end{slide}
+
+
+\begin{slide}{Kuvien liitt‰minen...}
+Esimerkki:
+\begin{verbatim}
+\includegraphics{foo}
+\end{verbatim}
+\includegraphics{foo}
+\end{slide}
+
+
+\begin{slide}{Kuvien liitt‰minen...}
+\begin{itemize}
+\item \verb|\includegraphics{kuvatiedosto}| liitt‰‰ kuvan
+\item Kuvan tiedostop‰‰te j‰tettiin tahallaan kirjoittamatta: \LaTeX{}
+  ja PDF\LaTeX{} valitsevat kykyns‰ mukaan ne tiedostot, joita ne
+  ymm‰rt‰v‰t:
+\item \LaTeX{} lukee vain \texttt{.eps}-tiedostoja
+\item PDF\LaTeX{} lukee \texttt{.pdf}, \texttt{.png} ja \texttt{.jpg} 
+  -tiedostoja, mutta \textbf{ei} \texttt{.eps}-tiedostoja $\Rightarrow$ 
+  k‰tev‰‰\dots
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Kuvien liitt‰minen...}
+Kuvan k‰‰nt‰minen 
+\[ \text{\texttt{.pdf}} \leftrightarrow
+   \text{\texttt{.eps}} \leftrightarrow
+   \text{\texttt{.png}} \leftrightarrow
+   \text{\texttt{.jpg}} \]
+onnistuu kuitenkin vaivoitta.
+\begin{itemize}  
+\item UNIXissa tyˆ k‰y k‰skyill‰ \texttt{epstopdf}
+  ja \texttt{pdftops} tai viimeist‰‰n
+\item GIMP ja ImageMagick -ohjelmilla, jotka saa Windowsiinkin.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Kuvien liitt‰minen...}
+Kuvaa etsit‰‰n samasta hakemistosta, miss‰ 
+tekstikin on. Jos kuvia on paljon, ne kannattaa laittaa omaan 
+alihakemistoonsa, jolloin kuviin pit‰‰ viitata joko 
+\begin{itemize}
+\item suhteellisella polulla \verb|\includegraphics{kuvat/foo}| tai
+\item antamalla komento \verb|\graphicspath{{}{}...{}}|
+\end{itemize}
+Esimerkki:
+\begin{verbatim}
+\graphicspath{{/home/arho/kuvat/}
+              {kuvat/}}
+\includegraphics{foo}
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{\texttt{$\boldsymbol{\backslash}$includegraphics[]\{\}}}
+\verb|\includegraphics| hyv‰ksyy valinnaisiksi parametreikseen joukon
+avain-arvopareja. Esimerkiksi
+\begin{verbatim}
+\includegraphics[width=0.3\textwidth,
+                 angle=45]{foo}
+\end{verbatim}
+\includegraphics[width=0.3\textwidth,
+                 angle=45]{foo}
+\end{slide}
+
+
+\begin{slide}{\texttt{$\boldsymbol{\backslash}$includegraphics[]\{\}...}}
+Yleisimm‰t lis‰parametrit:\medskip
+\begin{itemize}
+\item \verb|scale=number| skaalaa kuvaa alkuper‰iseen kokoon verrattun
+\item \verb|width=length| m‰‰r‰‰ leveyden
+\item \verb|height=lenght| m‰‰r‰‰ korkeuden
+\item \verb|angle=degrees| k‰‰nt‰‰ kuvaa matemaattisesti positiiviseen 
+  suuntaan
+\end{itemize}\medskip
+\begin{flushleft}
+Huom! Pituus sis‰lt‰‰ suureen, esim. \verb|1.5cm| tai \verb|0.2\textwidth|;
+numero on taas suureeton.
+\end{flushleft}
+\end{slide}
+
+
+\begin{slide}{Kuvaymp‰ristˆt}
+Usein kuvien liitt‰minen halutaan tehd‰ joustavasti ja numerointi
+automaattisesti. Esimerkki:
+\begin{verbatim}
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{foo}
+\caption{H‰rp‰kkeen rakennekaavio}
+\label{fg:foo}
+\end{center}
+\end{figure}
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{Kuvaymp‰ristˆt...}
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{foo}
+\caption{H‰rp‰kkeen rakennekaavio}
+\label{fg:foo}
+\end{center}
+\end{figure}
+Kuvaan voi viitata myˆhemmin k‰skyll‰ \verb|\ref{fg:foo}| (mik‰ korvataan
+tekstiss‰ kuvan numerolla).
+\end{slide}
+
+
+\begin{slide}{Kuvaymp‰ristˆt...}
+Lis‰komento \verb|[!htbp]| tarkoittaa, ett‰
+\begin{itemize}
+\item I really would like(\textbf{!}) to insert
+\item the picture right \textbf{h}ere, or at least,
+\item to the \textbf{t}op or
+\item to the \textbf{b}ottom of this page,
+\item and if this also fails, to a separate
+\textbf{p}icture page.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Kuvaymp‰ristˆt...}
+Lis‰paketilla \texttt{floatflt} kuva saadaan kiert‰m‰‰n teksti‰.\bigskip
+
+\begin{verbatim}
+\begin{floatingfigure}{4cm}
+\includegraphics[width=3cm]{foo}
+\caption{Jep!}
+\label{fg:fooii}
+\end{floatingfigure}
+T‰h‰n voi sitten jorista, 
+mit‰ kuvasta tulee mieleen...
+\end{verbatim}
+\end{slide}
+
+\begin{slide}{Kuvaymp‰ristˆt...}
+\begin{floatingfigure}{4cm}
+\includegraphics[width=3cm]{foo}
+\caption{Jep!}
+\label{fg:fooii}
+\end{floatingfigure}
+T‰h‰n voi sitten jorista, mit‰ kuvasta tulee mieleen. Teksti v‰ist‰‰ kuvaa
+siihen asti kunnes kuva loppuu ja teksti mahtuu koko sivun levyiseksi. 
+\end{slide}
+
+
+\begin{slide}{V‰rit}
+V‰rit on helpointa ottaa k‰yttˆˆn k‰skyll‰
+\begin{verbatim}
+\usepackage[usenames]{color}
+\end{verbatim}
+jolloin v‰rej‰ ei tarvitse itse m‰‰ritell‰ erikseen
+(valmiin v‰rikartan voit ladata kurssin kotisivulta). Ik‰v‰ kyll‰
+t‰m‰ ei toimi PDF\LaTeX in tapauksessa, vaan v‰rit on m‰‰ritelt‰v‰ k‰skyll‰
+\begin{verbatim}
+definecolor{nimi}{j‰rjestelm‰}{m‰‰ritelm‰}
+\end{verbatim}
+esimerkiksi
+\begin{verbatim}
+\definecolor{vihrea}{rgb}{0.61,0.78,0.05}
+\colorbox{vihrea}{Vihre‰}
+\end{verbatim}
+\definecolor{vihrea}{rgb}{0.61,0.78,0.05}
+\colorbox{vihrea}{Vihre‰}
+\end{slide}
+
+
+\begin{slide}{V‰rit...}
+
+Valmiilla v‰reill‰ leikkiminen on helppoa:
+\begin{verbatim}
+\colorbox{Dandelion}{Appelsiini}
+\fcolorbox{Red}{Green}{P‰‰ryn‰}
+\textcolor{Blue}{
+\[ \sum_{k=1}^\infty a_k \]}
+\end{verbatim}
+\colorbox{Dandelion}{Appelsiini}
+\fcolorbox{Red}{Green}{P‰‰ryn‰}
+\textcolor{Blue}{
+  \[ \sum_{k=1}^\infty a_k \]}
+\end{slide}
+
+\begin{slide}{Piirto \LaTeX illa itsell‰‰n}
+\LaTeX{} sis‰lt‰‰ itsess‰‰n mahdollisuuden piirt‰‰ 
+yksinkertaisia k‰ppyrˆit‰. Esimerkki (Kopkan ja Dalyn kirjasta):
+\begin{verbatim}
+\setlength{\unitlength}{0.8cm}
+\begin{picture}(5,2)\thicklines
+  \put(5,0){\vector(-1,0){5}}
+  \put(0,0){\vector(1,1){2}}
+  \put(2,2){\vector(3,-2){3}}
+\end{picture}
+\end{verbatim}
+\begin{center}
+\setlength{\unitlength}{0.8cm}
+\begin{picture}(5,2)\thicklines
+  \put(5,0){\vector(-1,0){5}}
+  \put(0,0){\vector(1,1){2}}
+  \put(2,2){\vector(3,-2){3}}
+\end{picture}
+\end{center}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+Vertailun vuoksi PostScript-kielt‰ (K\&D:n kirja):
+\begin{verbatim}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 169 158 233 242
+220 200 moveto
+200 200 20 0 360 arc
+170 170 moveto
+230 220 lineto
+170 210 lineto
+225 160 lineto
+205 240 lineto
+170 170 lineto
+stroke
+showpage
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+Edellinen koodi tuottaa kuvan
+\begin{center}
+\includegraphics[width=0.3\textwidth]{hassakka}
+\end{center}
+Seuraavaksi mutkikkaampi esimerkki\dots
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+\footnotesize
+\begin{verbatim}
+%!ps
+/iter 60 def /reso .005 def /sq { dup mul } def
+/mod { 2 copy div floor mul sub } def /plot {
+newpath moveto 1 0 rlineto stroke } def gsave
+280 420 translate 260 2 div dup scale 2 260 div
+setlinewidth -2 reso 2 { /x exch def -2 reso 2 {
+/y exch def /r 0 def /i 0 def /n 0 def iter { r
+sq i sq add 4 gt { exit } if /rr r sq i sq sub x
+add def /i 2 r mul i mul y add def /r rr def /n
+n 1 add def } repeat n 10 mod .1 mul .1 add
+setgray x y plot } for } for grestore showpage
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{mandelbrot}
+\end{center}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+\begin{itemize}
+\item Komentokieli‰ k‰ytt‰en piirroksista tulee
+t‰sm‰llisi‰, koska jokainen koordinaatti annetaan numerona.
+\item K‰yttˆ vaatii aina erillisen opettelun.
+\item Kielet vaihtelevat \emph{ilmaisuvoimaltaan}. \LaTeX in oma
+  piirtoymp‰ristˆ on t‰ss‰ mieless‰ aika kˆyh‰, sill‰ esimerkiksi
+  viivan kaltevuus ei voi olla mielivaltainen.
+\item Useimmissa piirto-ohjelmissa on mahdollista
+  antaa haluttaessa koordinaatteja, joten v‰ltt‰m‰tˆnt‰ syyt‰
+  komentokielen opetteluun ei nyky‰‰n en‰‰ ole.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+Mill‰ sitten kannattaa piirt‰‰? Ohjelma kannattaa valita maun 
+ja maksukyvyn mukaan. GNU:n General Public Licensen alaiset ohjelmat saa 
+ladattua suoraan verkosta ja ne ovat periaatteessa kaikkein joustavimpia
+(koska l‰hdekoodikin on avointa).
+
+\begin{itemize}
+\item GIMP on hyv‰ maalausohjelma
+\item Xfig on siedett‰v‰ vektoripiirto-ohjelma (Linuxille, 
+  Windowsille shareware-levitteinen WinFig)
+\item R ja gnuplot tuottavat mainioita matemaattisia graafeja
+\item \dots 
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+Gimp on puhtaasti maalausohjelma, ja erinomainen sellainen
+\begin{center}
+\includegraphics[width=0.7\textwidth]{gimpmac}
+\end{center}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+Xfig on vanhaa perua ja sen k‰yttˆ poikkeaa kaikista nykyaikaisista
+ohjelmista. Ohjelma sin‰ll‰‰n on mainio.
+\begin{center}
+\includegraphics[width=0.62\textwidth]{xfig}
+\end{center}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+Esimerkki \texttt{gnuplot}in komentokielest‰:
+\begin{verbatim}
+set pm3d
+set contour base
+set xrange [-5:5]
+set yrange [-5:5]
+set isosamples 20,20
+set xlabel "x"
+set ylabel "y"
+unset key
+set term post eps enhanced
+set output "gnuplotex.eps"
+splot x**2-2*y**2 + 2*y -2
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+T‰m‰ tuottaa kuvan
+\vspace*{-1cm}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{gnuplotex}
+\end{center}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+R on parhaimmillaan tilastollisten kuvaajien piirrossa.
+\begin{center}
+\includegraphics[width=0.7\textwidth]{quakes-coplot}
+\end{center}
+\end{slide}
+
+
+\begin{slide}{Piirto...}
+Kaupallisia vaihtoehtoja piirto-ohjelmiksi:
+\begin{itemize}
+\item CorelDraw!,
+\item Adobe Photoshop,
+\item Adobe Illustrator,\dots
+\end{itemize}
+sek‰ symbolisia ja numeerisia ohjelmia, joilla voi piirt‰‰ graafeja
+\begin{itemize}
+\item Maple,
+\item Mathematica,
+\item Matlab,\dots
+\end{itemize}
+\end{slide}
+
+
+\end{document}

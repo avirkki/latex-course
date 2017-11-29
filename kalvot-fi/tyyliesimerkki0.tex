@@ -1,0 +1,80 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage[finnish,english]{babel}
+\usepackage{mathrsfs,amsfonts,amsmath,amssymb}
+ 
+
+\begin{document}
+
+\section{Funktioteoriaa}
+ 
+\selectlanguage{finnish}
+
+\subsection{Aluksi}
+
+Funktioteorian\footnote{Tunnetaan myös kompleksianalyysinä}
+sovellusaloja ovat useimmat matemaattisen analyysin alat, esimerkiksi
+
+\begin{itemize}
+\item differentiaaliyhtälöt, funktionaalianalyysi, harmoninen analyysi,
+\item lukuteoria, algebra, matriisiteoria,
+\item fysiikassa sähköoppi ja erikoisfunktiot ja
+\item teknillisissä tieteissä elektroniikka, signaalinkäsittely sekä
+\item automaatio- ja säätötekniikka.
+\end{itemize}
+
+
+\subsection{Historiaa}
+
+Funktioteorian kehitykseen vaikuttivat muiden muassa Euler, Cauchy,
+Riemann, Weierstrass, Klein, Poincare ja Ahlfors (kuva \ref{hahmoja}).
+Suomalaisia vaikuttajia olivat E. Lindelöf, R.  Nevanlinna, L. Alfors
+ja O.  Lehto.  Funktioteorian nykyisiä tutkimuskohteita ovat
+esimerkiksi \emph{kompleksi dynamiikka}, \emph{Möbius--kuvausten
+  diskreetit ryhmät} ja \emph{kvasikonformikuvaukset}.
+
+\begin{figure}[!htbp]
+\begin{center}
+\hfill
+\includegraphics[width=0.25\textwidth]{Euler_8}\hfill
+\includegraphics[width=0.25\textwidth]{Gauss_1828}\hfill
+\includegraphics[width=0.25\textwidth]{Ahlfors_2}
+\hfill\mbox{}
+\caption{Leonhard Euler (1707 Basel, Sveitsi -- 1783
+  Pietari, Venäjä); Johann Carl Friedrich Gauss (1777 Brunswick, Saksa
+  -- 1855 Göttingen, Saksa); Lars Valerian Ahlfors (1907 Helsinki,
+  Suomi -- 1996 Pittsfield, Massachusetts, USA)}
+\label{hahmoja}
+\end{center}
+\end{figure}
+
+
+Esimerkki kompleksidynamiikasta:
+
+Etsitään yhtälön $f ( z ) = z^3 - 1$=0 ratkaisu Newtonin iteraartioilla
+(newtonin iteraatiokaava on
+\[ z_{n + 1} := z_n - \frac{f ( z_n )}{f' ( z_n )} \]
+skalaarifunktioille). Millä alkuarvolla $z_0$ ratkaisut suppenevat kohti
+juurta $z = 1$? Nämä alkuarvot muodostavat geometriselta rakenteeltaan
+monimutkaisen joukon, fraktaalin.
+
+
+\subsection{Funktioteorian perusteet}
+
+Kompleksiluvut $\mathbb{C}$ ovat muotoa $z = ( x, y )$, eli jokainen
+alkio on järjestetty pari. Osoittautuu, että tällaiselle parille
+voidaan määritellä plus- ja erityisesti kompleksinen \emph{kertolasku}
+niin, että kompleksiluvut muodostavavat kunnan. Kaiken idea on
+kertolaskun ominaisuus
+\[ ( 0, 1 ) ( 0, 1 ) = ( - 1, 0 ), \]
+jota merkitään myös $\sqrt{- 1} = i$. Tähän päästään merkitsemällä
+vastaavuudet
+\[ ( 1, 0 ) \sim 1 \quad \text{ja} \quad ( 0, 1 ) \sim i. \]
+Kompleksiluvun $z$ reaaliosa $x$ voidaan aina poimia funktiolla
+${\mathrm Re} ( \cdot )$ ja imaginaariosa $y$ funktiolla ${\mathrm Im}
+( \cdot )$, mikäli osia tarvitaan erikseen.
+
+
+ 
+\end{document}

@@ -1,0 +1,396 @@
+% Hienoiksi havaittuja tyylejä:
+% rico,contemporain,darkblue,frames,blends,whitecross,corners,capsules
+%
+\documentclass[slideColor,colorBG,pdf,corners]{prosper}
+\usepackage[latin1]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{url}
+\usepackage{color}
+\usepackage{eurosym}
+
+
+% Nämä asiat voivat muuttua:
+\newcommand{\plus}{\makebox[1.3em]{+}}
+\newcommand{\minus}{\makebox[1.3em]{-}}
+
+
+
+
+\begin{document}
+
+\title{Osa 6: Muut työkalut}
+\author{}
+\maketitle
+
+\begin{slide}{Muiden työkalujen tarve}
+\LaTeX{} on mainio taitto-ohjelma, mutta tuottavaan 
+työhön tarvitaan vielä ainakin
+\begin{itemize}
+\item viitteidenhallintaa,
+\item piirto-ohjelmaa sekä toisinaan joitain
+\item eksoottisempia \LaTeX in lisäpaketteja.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{BibTeX}
+
+BibTeX on \LaTeX ia varten suunniteltu viitteidenhallintaohjelma 
+(Oren Patashnik ja Leslie Lamport, 1985).
+\begin{itemize}
+\item Yksinkertainen ja laajennettava tiedostomuoto:
+\begin{itemize}
+  \item tietokantaa voi muokata vaikka käsin ja
+  \item kantaa käsitteleviä ohjelmia on helppo kirjoittaa.
+\end{itemize}
+\item BibTeX-työkaluja on tarjolla pilvin pimein:
+\begin{itemize}
+  \item \texttt{bibtool}
+  \item \texttt{bibtex2html}
+  \item \dots
+\end{itemize}
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{BibTeX\dots}
+BibTeX-tietokanta on puhdasta tekstiä. Esimerkki:
+\begin{verbatim}
+@Article{    gro67,
+  author  = {Fred S. Grodins and ...},
+  title   = {Mathematical analysis and ...},
+  journal = {Journal of Applied Physiology},
+  volume  = {22},
+  number  = {2},
+  pages   = {260-276},
+  year    = {1967},
+  url     = {Grodins - Maadsotrcs.pdf}
+}
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{BibTeX\dots}
+\begin{itemize}
+\item Tietue alkaa tietueen tyypillä, esimerkiksi \verb|@article|,
+  \verb|@book| tai \verb|@techreport|.
+\item Ensin kirjoitetaan tietueen tunniste, jotta tekstissä voidaan
+  tehdä viittaus komennolla \verb|\cite{lyhenne}|.
+\item Kentät ovat avain-arvopareja, esimerkiksi \verb|pages={260-276}|.
+\item Kaikki kentät erotellaan pilkuin.
+\end{itemize}
+Tietueen rakenne on siis
+\begin{verbatim}
+@tyyppi{kenttä, kenttä, ..., kenttä}
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{BibTeX\dots}
+\begin{itemize}
+\item Kirjoittajat tulevat järjestyksessä \emph{etunimi sukunimi} ja
+\item joka henkilön väliin kirjoitataan avainsana \texttt{and}.
+\end{itemize}
+\begin{verbatim}
+J. Doe and O. Normalverbraucher and 
+M. Meikäläinen and J. Teikäläinen
+\end{verbatim}\medskip
+\begin{flushleft}
+Viiteluettelon tarkan tyylin määrää erillinen tyylitiedosto, jonka 
+useimmiten saa ladatuksi suoraan sen lehden verkkosivulta, jonne 
+on kirjoitustaan lähettämässä.
+\end{flushleft}
+\end{slide}
+
+
+\begin{slide}{BibTeX\dots}
+Tyylitiedosto voi esimerkiksi määrätä, että otsikko alkaa isolla
+kirjaimella ja kaikki seuraavat sanat pienellä. Silloin esimerkiksi
+\begin{verbatim}
+Stability of the Human Respiratory 
+Control System I: Analysis of a 
+Two-Dimensional Delay State-Space Model
+\end{verbatim}
+menee muotoon
+\begin{verbatim}
+Stability of the human respiratory 
+control system i: analysis of a 
+two-dimensional delay state-space model
+\end{verbatim}
+mikä ei välttämättä ollut tarkoitus.
+\end{slide}
+
+
+\begin{slide}{BibTeX\dots}
+Jos sanan tai sen osan kirjoitusasu on määrätty, tekstiä voidaan
+suojata ylimääräisillä aaltosulkeillä \{ \}
+\begin{verbatim}
+... System {I}: {A}nalysis of a ...
+\end{verbatim}
+jolloin näitä osia ei muuteta.
+\end{slide}
+
+
+\begin{slide}{BibTeX ja natbib}
+Lataamalla lisäpaketin
+\begin{verbatim}
+\usepackage{natbib}
+\end{verbatim}
+saadaan käyttöön kaksi uutta komentoa 
+perus-\verb|\cite{}|:n lisäksi:
+\begin{itemize}
+\item \verb|\citet{}| --- \emph{textual} ja
+\item \verb|\citep{}| --- \emph{parenthetical citation}.
+\end{itemize}
+jollon viitteet voidaan ottaa osaksi tekstiä.
+\end{slide}
+
+
+\begin{slide}{BibTeX ja natbib\dots}
+Esimerkki:
+\begin{verbatim}
+\citet{Foo88} showed that... furthermore ...
+in the last decade \citep{Bar93,Baz96}.
+\end{verbatim}
+tuottaa nyt esimerkiksi
+\begin{quotation}
+\noindent
+Fooman et al. (1988) showed that... furthermore ...
+in the last decade (Barnos et al., 1993; Bazel et al., 1996).
+\end{quotation}
+valitusta tyylistä riippuen.
+\end{slide}
+
+
+
+\begin{slide}{BibTeXin käyttö}
+Esimerkki: \medskip
+Jos BibTeX-tietokanta on tiedostossa \texttt{kanta.bib},
+kantaan viitataan tekstissä käskyllä \verb|\cite{avain}| ja
+lähdeluettelo lisätään tekstiin käskyllä\medskip
+\begin{verbatim}
+\bibliographystyle{apalike}
+\bibliography{kanta}
+\end{verbatim}
+missä \texttt{apalike.bst} on vakiona tuleva tyylitiedosto.
+\end{slide}
+
+
+\begin{slide}{BibTeXin käyttö\dots}
+Mikäli dokumenttia käännetään ensi kertaa, tarvitaan kaikkiaan
+käskyt
+\begin{verbatim}
+latex teksti 
+bibtex teksti 
+latex teksti 
+latex teksti 
+\end{verbatim}
+ennen kuin kaikki on valmista.
+\end{slide}
+
+\begin{slide}{Tiedostomuodon helppous}
+Aikaisemmassa esimerkissämme oli kohta
+\begin{verbatim}
+@Article{    gro67,
+  ...,
+  url     = {Grodins - Maadsotrcs.pdf}
+}
+\end{verbatim}
+\begin{flushleft}
+missä \texttt{url} viittaa tiedostonimeen paikallisessa koneessa. 
+Tällä nimellä ei tietenkään ole merkitystä muille, joten kenttä
+on hyvä poistaa julkisesta versiosta.
+\end{flushleft}
+\end{slide}
+
+
+\begin{slide}{Tiedostomuodon helppous\dots}
+Koska bibtexin \texttt{.bib}-tiedostot ovat 
+tavallista tekstiä, kentän poisto sujuu helposti.\medskip
+
+Esimerkki: (\texttt{sed} = strean editor)
+\begin{verbatim}
+sed --in-place '/url/ d' viitteet.bib
+\end{verbatim}
+Sama sujuu toki sopivalla Python tai Perl -ohjelmalla.
+\end{slide}
+
+
+\begin{slide}{XFig-esimerkki}
+Tavoitteena on piirtää yläasteikäisille yksinkertaisia 
+geometrisiä tehtäviä. Esimerkki: \emph{"Ratkaise alla olevasta 
+kuviosta $x$"}.
+\begin{center}
+\scalebox{0.8}{\input{triangle.pstex_t}}
+\end{center}
+\end{slide}
+
+
+\begin{slide}{XFig-esimerkki...}
+\vspace*{-0.8cm}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{xfigshot1}
+\end{center}
+\end{slide}
+
+
+\begin{slide}{XFig-esimerkki...}
+\begin{itemize}
+\item Kaavat kirjoitetaan kuviin \verb|$$|-merkkien väliin.
+\item XFigille pitää sanoa, että teksti on \emph{special}-muotoa (eli
+  sille ei tehdä mitään, \LaTeX{} hoitaa tekstityksen) joko valikoista
+  tai muuttamalla oletus komentorivioptioilla \texttt{-specialtext
+    -latexfonts}.
+\item File $\rightarrow$ Export : Combined PS/LaTeX (Both parts)
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{XFig-esimerkki...}
+\begin{itemize}
+\item Saadaan kaksi tiedostoa \verb|kuvannimi.pstex| ja 
+  \verb|kuvannimi.pstex_t|.
+\end{itemize}
+Kuva voidaan nyt liittää dokumenttiin esimerkiksi käskyllä
+\begin{verbatim}
+\begin{center}
+\scalebox{0.8}{\input{kuvannimi.pstex_t}}
+\end{center}
+\end{verbatim}
+\begin{itemize}
+\item Jos kuvan koko on väärä, komennolla \verb|\scalebox{}{}| voidaan
+  korjata tilanne.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{XFig-esimerkki...}
+\begin{itemize}
+\item XFig ei toimi Windowsissa (kovinkaan helposti)
+\item Vaihtoehtona WinFIG $\boldsymbol{\rightarrow}$
+  \begin{itemize}
+  \item Shareware-ohjelma, maksaa noin 20 \euro 
+  \item Windowsin itsensä hintaan verattuna halpa
+  \end{itemize}
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{XFig-esimerkki...}
+\vspace*{-0.8cm}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{winfigshot1}
+\end{center}
+\end{slide}
+
+
+
+\begin{slide}{Prosper}
+Prosper on lisäpaketti esitysgrafiikkan tekoon:
+\begin{itemize}
+\item kirjoitat normaalia \LaTeX ia ja
+\item Prosper tekee lopputuloksesta 
+voimapistemenetelmällä tehdyn näköistä
+\item paitsi kaavojen osalta, joka ovat taattua
+\LaTeX -laatua.
+\item Tämän kalvon tyyli on \textbf{corners}
+\end{itemize}
+\[ x = \sum_k a_k x_k \]
+\end{slide}
+
+
+\begin{slide}{Prosper, asennus}
+Asennus ja käyttö (Linux, teTeX): 
+\begin{itemize}
+\item Lataa Prosper osoitteesta \url{http://prosper.sourceforge.net/} ja
+\item pura paketit paikkaan, josta \LaTeX{} löytää tyylitiedostot.
+\end{itemize}
+Symbolinen linkki esimerkiksi hakemistoon
+\begin{verbatim}
+/usr/share/texmf/tex/latex/
+\end{verbatim}
+riittää.
+\begin{itemize}
+\item Aja \texttt{texhash}, jolloin
+\LaTeX{} huomioi asennuksen.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Prosper, asennus\dots}
+Kalvojen kääntö on suoraviivaista:
+\begin{verbatim}
+latex kalvot; dvipdf kalvot
+\end{verbatim}
+\begin{itemize}
+\item Kalvoja kannattaa katsella \texttt{xpdf}-ohjelmalla.
+\item Komento \texttt{Ctrl-L} \texttt{xpdf}:n ikkunassa päivittää näkymän, jos
+tiedosto on muuttunut levyllä.
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Prosper, asennus\dots}
+Asennus ja käyttö (Windows, MiKTeX):
+\begin{itemize}
+\item Hanki Prosper MiKTeX Package Managerin kautta.
+\end{itemize}
+Huomaa, että Prosper-kalvoja ei voi kääntää suoraan
+.pdf:ksi (koska Prosper on tehty PSTricks-paketin päälle). Kalvot
+käännetään niin, että
+\begin{itemize}
+\item valitaan ensin käännös LaTeX $\Rightarrow$ PS,
+\item katsellaan lopputulosta GSView-ohjelmalla ja
+\item käännetään lopuksi valmiit kalvot .pdf-muotoon GSView-ohjelmasta.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Prosper, käyttö}
+Valitaan Prosper käyttöön ensimmäisellä ostikkorivillä:
+\begin{verbatim}
+\documentclass[slideColor,colorBG,
+               pdf,corners]{prosper}
+\usepackage[latin1]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{url}
+...
+
+\begin{document}
+...
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{Prosper, käyttö...}
+Mahdollisia tyylejä ovat muiden muassa
+\texttt{rico, contemporain, darkblue, frames, blends, whitecross, corners}
+ja \texttt{capsules} asennuksesta riippuen.\bigskip
+
+Kalvo alkaa ja päättyy käskyin
+\begin{verbatim}
+\begin{slide}{Kalvon otsikko}
+Tämä tulee kalvolle.
+...
+\end{slide}
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}{Prosper, käyttö...}
+\normalsize
+Nämä ovat huonoja kalvoja; hyvällä kalvolla teksti on\medskip
+\begin{itemize}
+\bfseries
+\item suurta ja
+\item ilmavaa.
+\item Maksimissaan 4 avainkohtaa / kalvo.
+\item Yleisö ei kuuntele ja lue yhtä aikaa.
+\end{itemize}
+\end{slide}
+
+
+\end{document}

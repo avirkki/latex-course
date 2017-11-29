@@ -1,0 +1,17 @@
+\frametitle{Symbols: big symbols}
+\begin{tabular}{llllll}
+\verb|\sum| & $\sum$ &
+\verb|\int| & $\int$ &
+\verb|\oint| & $\oint$ \\[5pt]
+\verb|\prod| & $\prod$ &
+\verb|\coprod| & $\coprod$ &
+\verb|\bigcap| & $\bigcap$ \\[5pt]
+\verb|\bigcup| & $\bigcup$ &
+\verb|\bigsqcup| & $\bigsqcup$ &
+\verb|\bigvee| & $\bigvee$ \\[5pt]
+\verb|\bigwedge| & $\bigwedge$ &
+\verb|\bigodot| & $\bigodot$ &
+\verb|\bigotimes| & $\bigotimes$ \\[5pt]
+\verb|\bigoplus| & $\bigoplus$ &
+\verb|\biguplus| & $\biguplus$
+\end{tabular}

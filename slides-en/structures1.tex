@@ -1,0 +1,488 @@
+% Beamer's default font size is 11 points. It is possible to set the
+% default font size to any of 8, 9, 10, 11, 12, 14, 17, 20
+\documentclass[13pt]{beamer}
+
+\usetheme{Warsaw}
+%\usecolortheme{dolphin}
+\usecolortheme{seahorse}
+%\useinnertheme{circles}
+\usefonttheme{professionalfonts}
+%\usefonttheme{structurebold}
+%\usefonttheme{default}
+
+\setbeamertemplate{navigation symbols}{}
+ 
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{fancybox}
+
+% These things can change:
+\newcommand{\baseurl}{http://cell.vtt.fi/latex}
+\urlstyle{sf}
+\newcommand{\plus}{\makebox[2em]{+}}
+\newcommand{\minus}{\makebox[2em]{-}}
+
+% In beamer, defining new commands inside the slides fails.
+\newcommand{\warning}[1]{%
+\begin{center}
+\Large
+\shadowbox{
+\textbf{#1}}
+\end{center}
+}
+
+\begin{document}
+
+\logo{\includegraphics[width=1.4cm]{img/vttplain}\quad}
+\title{\scalebox{1.5}{\textrm{\LaTeX}} Course 2011}
+\subtitle{Part 2: Logical commands}
+\author{Arho Virkki}
+\institute{\textsc{VTT Technical Research Centre of Finland}}
+\date{\scalebox{0.8}{\textcolor{gray}{}}}
+
+\begin{frame}[fragile]
+  \titlepage
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Logical commands}
+The document is described in abstract level. Logical command define,
+for example,
+\begin{itemize}
+\item sections (\verb|\section{foo}|),
+\item environments (\verb|\begin{frame}|),
+\item emphasis (\verb|\emph{observe}|),
+\item \dots
+\end{itemize}
+and the interpretation of these commands is controlled by the style sheet
+(.sty) and it depends, of course, also on the media (.pdf document, .pdf
+slides or .html page).
+\medskip
+
+{\footnotesize Observe that LaTeX was first introduces in 1985 as an extension
+for TeX (first released in 1978), and HTML5/CSS3, copying the same idea, is called the
+``future of the web'' (as of 2011).}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{What this means?}
+Setting the style by hand is not a good idea\footnote{Compare
+this with doing <div style=``font-style: italic''> \ldots </div> in an html
+document instead of using <emph> and defining that environment properly in
+the cascading style sheet (css)!}.
+\bigskip
+
+Avoid:
+{\small
+\begin{verbatim}
+\textbf{Backround}\\[3mm]
+In the future, one of the most striking 
+challenges will be...
+\end{verbatim}}
+
+Instead, use:
+{\small
+\begin{verbatim}
+\section{Backround}
+In the future, one of the most striking 
+challenges will be...
+\end{verbatim}}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{What this also means?}
+\begin{itemize}
+\item LaTeX is a sophisticated, and thus also a bit involved environment.
+\item You should be writing scratch files in plain text (or with paper and
+pencil -- and then feed the papers into scanner to archive them). 
+\item Nevertheless, I use LaTeX to write down the potential ideas still
+being immature for publication just to make them clean.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Headings}
+The levels of headings are
+\begin{itemize}
+\item[-1] \verb|\part{}|
+\item[0] \verb|\chapter{}|
+\item[1] \verb|\section{}|
+\item[2] \verb|\subsection{}|
+\item[3] \verb|\subsubsection{}|
+\item[4] \verb|\paragraph{}|
+\item[5] \verb|\subparagraph{}|
+\end{itemize}
+\end{frame}
+ 
+\begin{frame}[fragile]\frametitle{Headings\dots}
+\begin{itemize}
+\item The levels  \verb|\part{}| and \verb|\chapter{}| are not used with all
+document types. These command are used mostly in books.
+\item Ending command (analog to ending tag) is not needed\footnote{This
+is in contrast to XML, where the elements always consist of the starting and
+ending tag and the content between them. For example,\\ \texttt{<tag>} must
+be ended with \texttt{<\textbackslash tag>}.}.
+\item Command \verb|\setcounter{secnumdepth}{n}| $n\in {0,\ldots,5}$
+defines the extent of explicit numbering (in front of the headings).
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Environments}
+The most common environments are
+\verb|equation|, \verb|displaymath| and \verb|itemize|. Suppose that
+\texttt{end1} and \texttt{env2} are two environments. Then
+\begin{verbatim}
+\begin{env1}
+  ...
+  \begin{env2}
+  ...
+  \end{env2}
+\end{env1}
+\end{verbatim}
+is legal. Observe that the environments need to be nested: \texttt{env1} can
+not end before \texttt{env2}.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: Lists}
+\begin{minipage}{0.4\textwidth}
+\begin{verbatim}
+\begin{enumerate}
+\item one
+\item two
+\end{enumerate}
+\begin{itemize}
+\item[+] pros
+\item[--] cons
+\end{itemize}
+\end{verbatim}
+\end{minipage}
+yields\hfill
+\begin{minipage}{0.4\textwidth}
+\begin{enumerate}
+\item one 
+\item two
+\end{enumerate}
+\begin{itemize}
+\item[+] pros
+\item[--] cons
+\end{itemize}
+\end{minipage}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: Plain text}
+\verb|\begin{verbatim}|\\
+\verb|  o o|\\
+\verb|   * |\\
+\verb|  \_/|\\
+\verb|\end{verbatim}|\bigskip
+
+produces
+\begin{verbatim}
+  o o 
+   * 
+  \_/
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: Plain text\dots}
+Source code listings are convenient to include with
+\verb|\verbatiminput{myprog.f90}|.\bigskip
+
+For algorithm, one should use an environment that can emphasize
+the keywords.\footnote{This is a good example of an exercise for this course:\\
+Find a package for this and describe how it is used.}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Environments: Text alignment}
+\texttt{center}:
+\begin{center}
+$\sum$
+\end{center}\bigskip
+
+\texttt{flushright}:
+\begin{flushright}
+$\sum$
+\end{flushright}\bigskip
+
+\texttt{flushleft}:
+\begin{flushleft}
+$\sum$
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: Text alignment\dots}
+\begin{verbatim}
+\begin{center}
+KYNTTILÄT SYTTYVÄT VARHAIN\bigskip
+
+Kiertävät unettavat auringonnousut\\
+Kaikkialle harsona niin\\
+Aattoni vähiin käynyt\\
+Kun kevät uutena nousee\\
+\dots
+\end{center}
+\begin{flushright}
+\emph{-- Kuusumun profeetta}
+\end{flushright}
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: Text alignment\dots}
+\begin{center}
+KYNTTILÄT SYTTYVÄT VARHAIN\bigskip
+
+Kiertävät unettavat auringonnousut\\
+Kaikkialle harsona niin\\
+Aattoni vähiin käynyt\\
+Kun kevät uutena nousee\\
+\dots
+\end{center}
+\begin{flushright}
+\emph{-- Kuusumun profeetta}
+\end{flushright}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: Text alignment\dots}
+The 'quote' environment is rather basic -- but it works.
+\begin{verbatim}
+\begin{quote}
+He has a profound respect for old age. 
+Especially when it's bottled.
+--- Gene Fowler 
+\end{quote}
+\end{verbatim}
+\begin{quote}
+He has a profound respect for old age. Especially when it's bottled.
+--- Gene Fowler
+\end{quote}\medskip
+
+The command \texttt{quotation} works better for longer quotations.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: Table}
+\begin{verbatim}
+\begin{tabular}{|l|c|c|}
+\hline
+Name & J. Foo & G. Bar \\
+\hline
+\hline
+A-score & 1 & 3 \\
+B-score & -2 & 0 \\
+\hline
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: Table\dots}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+Name & J. Foo & G. Bar \\
+\hline
+\hline
+A-score & 1 & 3 \\
+B-score & -2 & 0 \\
+\hline
+\end{tabular}
+\end{center}\bigskip
+
+Somehow this looks shomehow crowded\dots Let's change the title
+into {\small
+\begin{verbatim}
+\rule[-4pt]{0pt}{16pt}Nimi & J. Foo & G. Bar \\
+\end{verbatim}
+} 
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: tabular\dots}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\rule[-4pt]{0pt}{16pt}Name & J. Foo & G. Bar \\
+\hline
+\hline
+A-score & 1 & 3 \\
+B-score & -2 & 0 \\
+\hline
+\end{tabular}
+\end{center}\bigskip
+\begin{flushleft}
+We extended the borders of the table with a line of with zero.\medskip
+
+The \LaTeX{} tables are, to be honest, rather clumsy. This is not a problem
+if we can generate them automatically (e.g. from the R language using the 
+xtable package).
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: Custom definitions}
+Let us define an environment than adds automatically a box at the end of a
+proof, and writes the title 'New Proof.' in the beginning: \bigskip
+\begin{verbatim}
+\newenvironment{newproof}
+{\makebox[2cm][l]{\textbf{New Proof.\ }}}
+{\hfill $\Box$}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Environments\dots}
+\begin{verbatim}
+\begin{newproof}
+Suppose that $\epsilon > 0$ is already 
+chosen,\dots
+\end{newproof}
+\end{verbatim}\bigskip
+
+\newenvironment{newproof}
+{\makebox[2cm][l]{\textbf{New Proof.\ }}}
+{\hfill $\Box$}
+\begin{newproof}
+Suppose that $\epsilon > 0$ is already chosen, \dots
+\end{newproof}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments\dots}
+The general form of the environment definition:
+\begin{verbatim}
+\newenvironment{name}[args]{begdef}{enddef}  
+\end{verbatim}
+or
+\begin{verbatim}
+\renewenvironment{name}[args]{begdef}{enddef}
+\end{verbatim}
+if we wish to re-define an existing environment.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments\dots}
+These exists a command for stating lemmas:
+\begin{verbatim}
+\newtheorem{command name}{theorem name}[counter]
+\end{verbatim}
+For example, 
+\begin{verbatim}
+\newtheorem{newlemma}{Lemma}[page]
+
+\begin{newlemma}[The Professors' Remainder 
+Theorem]
+If we use half of the time left for each 
+exercise, we can deal with an infine number 
+of exercises. 
+\end{newlemma}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Environments\dots}
+\newtheorem{newlemma}{Lemma}[page]
+\begin{newlemma}[The Professors' Remainder 
+Theorem] 
+If we use half of the time left for each 
+exercise, we can deal with an infine number 
+of exercises.
+\end{newlemma}\bigskip
+
+Let us further inspect the command:
+\begin{verbatim}
+\newtheorem{newlemma}{Lemma}[page]
+\end{verbatim}
+where the numbering was set to follow the
+\texttt{page} counter. Thus, (if this was an article and not a slideshow)
+all formulas are numbered as
+\begin{center} 
+(page,lemma) 
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments\dots}
+\begin{verbatim}
+\newtheorem{mynote}{Note!}
+\begin{mynote}
+Huom\dots
+\end{mynote}
+\end{verbatim}\bigskip
+
+\newtheorem{mynote}{Note!}
+\begin{mynote}
+Notes lose their meaning if there are too many of them, or the notes
+are self-evident.
+\end{mynote}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments\dots}
+
+\begin{mynote}
+\LaTeX{} has lots of counters that can be cited with the command
+\verb|\the<counter_name>|:
+\begin{verbatim}
+We are on slide \thepage.
+\end{verbatim}
+We are on slide \thepage.
+\end{mynote}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Environments: Summary}
+Remember the commands
+\begin{itemize}
+\item \verb|\newcommand| and
+\item \verb|\newtheorem|.
+\end{itemize}
+Details can be found from books or on-line help systems.\medskip
+
+You can inspect e.g. 
+\url{http://en.wikibooks.org/wiki/LaTeX}, \\
+or by typing the command name into Google --- which seems to be a reasonable
+default procedure for anything nowadays.
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Commands}
+If we need a simple command, e.g. 
+\verb|\warning{text}|, one can define
+\begin{verbatim}
+\newcommand{\warning}[1]{%
+\begin{center}
+\Large
+\shadowbox{
+\textbf{#1}}
+\end{center}
+}
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Commands\dots}
+Now, the command
+\begin{verbatim}
+\warning{orthogonal vectors $\neq$ 
+orthonormal vectors}
+\end{verbatim}\medskip
+produces
+\warning{orthogonal vectors $\neq$ orthonormal vectors}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Observations}
+\begin{itemize}
+\item \verb|\shadowbox{}| is from the package 
+\texttt{fancybox}. There are tons of similar useful and less useful packages
+available at the Comprehensive TeX Archive Network (CTAN).
+\item To define new high level logical commands, one of course needs to know
+something about the low level \LaTeX{} ``programming''.   
+\end{itemize}
+\end{frame}
+
+
+\end{document}
